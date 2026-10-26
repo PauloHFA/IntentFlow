@@ -97,7 +97,7 @@ export default function ResumoSessaoPage() {
             Resumo de Foco da Sessão
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
             <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
               <span className="text-xs text-slate-500">Tempo Planejado</span>
               <p className="text-2xl font-bold text-slate-900 mt-1">
@@ -107,13 +107,13 @@ export default function ResumoSessaoPage() {
 
             <div className="p-4 rounded-xl bg-indigo-50/60 border border-indigo-100">
               <span className="text-xs text-indigo-700 font-semibold">
-                Tempo com Atenção Real
+                Tempo com Foco Real
               </span>
               <p className="text-2xl font-bold text-indigo-900 mt-1">
                 {minutosAssistidosReal} min
               </p>
               <span className="text-[10px] text-slate-400">
-                (Apenas enquanto o player tocava e a aba estava visível)
+                (Player ativo e aba visível)
               </span>
             </div>
 
@@ -122,6 +122,19 @@ export default function ResumoSessaoPage() {
               <p className="text-2xl font-bold text-slate-900 mt-1">
                 {notas.length} notas
               </p>
+            </div>
+
+            <div className="p-4 rounded-xl bg-amber-50/70 border border-amber-200">
+              <span className="text-xs text-amber-800 font-semibold flex items-center space-x-1">
+                <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+                <span>XP Conquistado</span>
+              </span>
+              <p className="text-2xl font-extrabold text-amber-700 mt-1">
+                +{minutosAssistidosReal * 10 + 50 + notas.length * 20 + (reflexao.trim() ? 75 : 0)} XP
+              </p>
+              <Link href="/conquistas" className="text-[10px] font-semibold text-amber-800 hover:underline">
+                Ver Conquistas & Nível →
+              </Link>
             </div>
           </div>
         </div>
