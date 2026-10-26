@@ -15,13 +15,14 @@ import {
   ArrowRight,
   RefreshCw,
   Sliders,
+  Check,
 } from "lucide-react";
 
 export default function IniciarSessaoPage() {
   const router = useRouter();
-  const [objetivo, setObjetivo] = useState("Aprender arquitetura de software e React");
+  const [objetivo, setObjetivo] = useState("Aprender inglês e conversação");
   const [tempoMinutos, setTempoMinutos] = useState(35);
-  const [intencaoSelecionada, setIntencaoSelecionada] = useState("");
+  const [intencaoSelecionada, setIntencaoSelecionada] = useState("todas");
   const [intencoes, setIntencoes] = useState<Array<{ id: string; nome: string }>>([]);
   const [candidatos, setCandidatos] = useState<CandidatoVideo[]>([]);
   const [filaOtimizada, setFilaOtimizada] = useState<CandidatoVideo[]>([]);
@@ -36,7 +37,6 @@ export default function IniciarSessaoPage() {
         const data = await res.json();
         if (data.intencoes && data.intencoes.length > 0) {
           setIntencoes(data.intencoes);
-          setIntencaoSelecionada(data.intencoes[0].id);
         }
       } catch (err) {
         console.error("Erro ao carregar intenções", err);
@@ -45,13 +45,44 @@ export default function IniciarSessaoPage() {
     carregarInicial();
   }, []);
 
-  // Carrega candidatos do feed ao alterar a intenção
+  // Detecção inteligente de intenção conforme o usuário digita
+  function handleObjetivoChange(novoTexto: string) {
+    setObjetivo(novoTexto);
+    const textoNorm = novoTexto
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+
+    if (
+      textoNorm.includes("ingl") ||
+      textoNorm.includes("english") ||
+      textoNorm.includes("idioma") ||
+      textoNorm.includes("vocabular")
+    ) {
+      const intIdiomas = intencoes.find((i) => i.id === "int-idiomas");
+      if (intIdiomas) setIntencaoSelecionada(intIdiomas.id);
+    } else if (
+      textoNorm.includes("react") ||
+      textoNorm.includes("program") ||
+      textoNorm.includes("codig") ||
+      textoNorm.includes("next") ||
+      textoNorm.includes("dev")
+    ) {
+      const intDev = intencoes.find((i) => i.id === "int-desenvolvimento");
+      if (intDev) setIntencaoSelecionada(intDev.id);
+    }
+  }
+
+  // Carrega candidatos do feed ao alterar a intenção ou objetivo
   useEffect(() => {
-    async function carregarFeed() {
+    const timer = setTimeout(async () => {
       setCarregando(true);
       try {
-        const query = intencaoSelecionada ? `?intencaoId=${intencaoSelecionada}` : "";
-        const res = await fetch(`/api/feed${query}`);
+        const queryParams = new URLSearchParams();
+        if (intencaoSelecionada) queryParams.set("intencaoId", intencaoSelecionada);
+        if (objetivo.trim()) queryParams.set("objetivo", objetivo.trim());
+
+        const res = await fetch(`/api/feed?${queryParams.toString()}`);
         const data = await res.json();
         if (data.candidatos) {
           setCandidatos(data.candidatos);
@@ -61,9 +92,10 @@ export default function IniciarSessaoPage() {
       } finally {
         setCarregando(false);
       }
-    }
-    carregarFeed();
-  }, [intencaoSelecionada]);
+    }, 250); // debounce de 250ms
+
+    return () => clearTimeout(timer);
+  }, [intencaoSelecionada, objetivo]);
 
   // Recalcula a fila pela Mochila 0/1 sempre que os candidatos ou o tempo mudam
   useEffect(() => {
@@ -117,7 +149,7 @@ export default function IniciarSessaoPage() {
             <span>Iniciar Sessão com Intenção</span>
           </h1>
           <p className="text-slate-500 text-sm mt-1">
-            Diga o que você quer aprender e quanto tempo tem. O algoritmo da Mochila 0/1 monta uma fila finita sob medida.
+            Digite o que quer aprender (ex: <em>"inglês"</em>, <em>"react"</em>, <em>"gramática"</em>). O algoritmo seleciona os vídeos temáticos que preenchem perfeitamente seu tempo.
           </p>
         </div>
 
@@ -126,22 +158,57 @@ export default function IniciarSessaoPage() {
           <div className="lg:col-span-6 bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
             <div>
               <label className="block text-sm font-semibold text-slate-700 mb-2">
-                Qual é o seu objetivo de aprendizado?
+                O que você quer aprender nesta sessão?
               </label>
               <input
                 type="text"
                 value={objetivo}
-                onChange={(e) => setObjetivo(e.target.value)}
-                placeholder="Ex: Dominar Hooks do React e Ciclo de Vida"
+                onChange={(e) => handleObjetivoChange(e.target.value)}
+                placeholder="Ex: Aprender inglês para viagens ou conversação"
                 className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm"
               />
+              <div className="flex flex-wrap gap-1.5 mt-2">
+                <span className="text-[11px] text-slate-400">Sugestões:</span>
+                <button
+                  type="button"
+                  onClick={() => handleObjetivoChange("Inglês do zero e vocabulário")}
+                  className="text-[11px] text-indigo-600 hover:underline bg-indigo-50 px-2 py-0.5 rounded-full"
+                >
+                  🇬🇧 Inglês do zero
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleObjetivoChange("Pensar em inglês e conversação")}
+                  className="text-[11px] text-indigo-600 hover:underline bg-indigo-50 px-2 py-0.5 rounded-full"
+                >
+                  🗣️ Pensar em inglês
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleObjetivoChange("React e Desenvolvimento Web")}
+                  className="text-[11px] text-indigo-600 hover:underline bg-indigo-50 px-2 py-0.5 rounded-full"
+                >
+                  💻 React & Dev
+                </button>
+              </div>
             </div>
 
             <div>
               <label className="block text-sm font-semibold text-slate-700 mb-2">
-                Intenção
+                Intenção ou Categoria
               </label>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                <button
+                  type="button"
+                  onClick={() => setIntencaoSelecionada("todas")}
+                  className={`px-3 py-2 text-xs font-medium rounded-xl border text-center transition-all ${
+                    intencaoSelecionada === "todas"
+                      ? "bg-indigo-600 border-indigo-600 text-white shadow-sm"
+                      : "bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100"
+                  }`}
+                >
+                  Todas (Busca Geral)
+                </button>
                 {intencoes.map((intencao) => (
                   <button
                     key={intencao.id}
@@ -212,7 +279,7 @@ export default function IniciarSessaoPage() {
               <div className="flex items-center space-x-2">
                 <Sparkles className="w-5 h-5 text-indigo-600" />
                 <h2 className="text-base font-bold text-slate-900">
-                  Fila Otimizada (Algoritmo da Mochila)
+                  Fila Otimizada para o Objetivo
                 </h2>
               </div>
               <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-700">
@@ -223,7 +290,7 @@ export default function IniciarSessaoPage() {
             {carregando ? (
               <div className="flex-1 flex flex-col items-center justify-center py-12 text-slate-400">
                 <RefreshCw className="w-8 h-8 animate-spin mb-2" />
-                <p className="text-sm">Buscando candidatos recentes dos canais...</p>
+                <p className="text-sm">Buscando os vídeos mais relevantes...</p>
               </div>
             ) : filaOtimizada.length === 0 ? (
               <div className="flex-1 flex flex-col items-center justify-center py-12 text-slate-400 text-center">
@@ -263,7 +330,7 @@ export default function IniciarSessaoPage() {
             )}
 
             <div className="mt-4 pt-3 border-t border-slate-100 text-[11px] text-slate-400">
-              ⚡ Fila finita e estrita: ao terminar o último vídeo, a reprodução encerra e você é direcionado para a reflexão e revisão. Sem autoplay contínuo.
+              ⚡ Fila finita e direcionada: ao digitar seu objetivo, o IntentFlow pontua os vídeos por palavras-chave e a Mochila 0/1 empacota o tempo exato com os melhores conteúdos.
             </div>
           </div>
         </div>
@@ -273,4 +340,3 @@ export default function IniciarSessaoPage() {
     </div>
   );
 }
-

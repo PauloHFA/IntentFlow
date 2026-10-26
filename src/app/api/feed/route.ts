@@ -7,13 +7,68 @@ import {
 } from "@/lib/algorithms/duracao";
 import { CandidatoVideo } from "@/lib/algorithms/mochila";
 
+function normalizarTexto(texto: string): string {
+  return texto
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
+
+/**
+ * Calcula score de relevância semântica baseado nos termos do objetivo do usuário.
+ * Permite que "inglês", "react", "vocabulário" etc. recebam prioridade matemática na mochila.
+ */
+function calcularRelevancia(
+  objetivo: string,
+  titulo: string,
+  descricao: string,
+  canalNome: string
+): number {
+  if (!objetivo || objetivo.trim().length === 0) return 0;
+
+  const termos = normalizarTexto(objetivo)
+    .split(/\s+/)
+    .filter((t) => t.length > 2);
+
+  const alvo = normalizarTexto(`${titulo} ${descricao} ${canalNome}`);
+  let score = 0;
+
+  for (const termo of termos) {
+    if (alvo.includes(termo)) {
+      score += 150; // grande bônus para coincidir na mochila
+    }
+  }
+
+  // Bônus específicos para intenções comuns
+  const objNorm = normalizarTexto(objetivo);
+  if (
+    (objNorm.includes("ingl") || objNorm.includes("english") || objNorm.includes("idioma")) &&
+    (alvo.includes("ingl") || alvo.includes("english") || alvo.includes("grammar") || alvo.includes("bbc"))
+  ) {
+    score += 300;
+  }
+
+  if (
+    (objNorm.includes("react") || objNorm.includes("program") || objNorm.includes("codigo") || objNorm.includes("web")) &&
+    (alvo.includes("react") || alvo.includes("code") || alvo.includes("javascript") || alvo.includes("fireship"))
+  ) {
+    score += 300;
+  }
+
+  return score;
+}
+
 export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
     const intencaoId = searchParams.get("intencaoId");
+    const objetivo = searchParams.get("objetivo") || "";
 
     let canais = db.listarCanais();
-    if (intencaoId) {
+
+    // Se o usuário especificou uma intenção válida, filtra;
+    // Se selecionou "todas" ou vazio, busca de todos os canais para maximizar a relevância ao objetivo!
+    if (intencaoId && intencaoId !== "todas") {
       canais = canais.filter((c) => c.intencaoId === intencaoId);
     }
 
@@ -21,12 +76,10 @@ export async function GET(req: Request) {
       return NextResponse.json({ candidatos: [] });
     }
 
-    const candidatos: CandidatoVideo[] = [];
+    const candidatos: Array<CandidatoVideo & { descricao?: string }> = [];
 
-    // Para cada canal da intenção, busca uploads recentes com baixo custo de cota
     for (const canal of canais) {
       try {
-        // 1. Obtém dados do canal e playlist de uploads (1 unidade, em cache na maior parte do tempo)
         const canalRes = await ytGet<{
           items?: Array<{
             contentDetails?: {
@@ -42,7 +95,6 @@ export async function GET(req: Request) {
 
         if (!uploadsPlaylistId) continue;
 
-        // 2. Busca os últimos 5 vídeos da playlist de uploads (1 unidade)
         const playlistRes = await ytGet<{
           items?: Array<{
             contentDetails?: {
@@ -73,7 +125,6 @@ export async function GET(req: Request) {
 
         if (videoIds.length === 0) continue;
 
-        // 3. Busca detalhes de duração e metadados em lote (1 unidade para até 50 vídeos)
         const videosRes = await ytGet<{
           items?: Array<{
             id: string;
@@ -104,16 +155,25 @@ export async function GET(req: Request) {
           const segundos = duracaoIsoParaSegundos(v.contentDetails?.duration ?? "PT0S");
           const duracaoMin = segundosParaMinutosCeil(segundos);
 
-          // Ignora vídeos vazios ou extremamente curtos/longos inválidos
           if (duracaoMin > 0) {
+            const titulo = v.snippet?.title ?? "Sem título";
+            const descricao = v.snippet?.description ?? "";
+            const bonusRelevancia = calcularRelevancia(
+              objetivo,
+              titulo,
+              descricao,
+              canal.titulo
+            );
+
             candidatos.push({
               videoId: v.id,
-              titulo: v.snippet?.title ?? "Sem título",
+              titulo,
+              descricao,
               canalNome: canal.titulo,
               miniaturaUrl: v.snippet?.thumbnails?.medium?.url,
               duracaoMin,
-              // Valor = prioridade do canal multiplicada
-              valor: canal.prioridade * 10,
+              // Valor da mochila = Prioridade do canal + Bônus semântico do objetivo digitado
+              valor: canal.prioridade * 10 + bonusRelevancia,
             });
           }
         }
@@ -121,6 +181,9 @@ export async function GET(req: Request) {
         console.warn(`Erro ao carregar candidatos do canal ${canal.titulo}:`, err);
       }
     }
+
+    // Ordena pelo valor total de relevância decrescente
+    candidatos.sort((a, b) => b.valor - a.valor);
 
     return NextResponse.json({ candidatos });
   } catch (error: any) {
@@ -130,4 +193,3 @@ export async function GET(req: Request) {
     );
   }
 }
-

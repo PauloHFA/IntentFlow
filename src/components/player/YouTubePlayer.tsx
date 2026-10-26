@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 interface YouTubePlayerProps {
   videoId: string;
@@ -47,6 +47,13 @@ function carregarApiYouTube(): Promise<void> {
       if (anterior) anterior();
       resolve();
     };
+
+    // Timeout de segurança para resolver caso a API já esteja em memória
+    setTimeout(() => {
+      if (window.YT && window.YT.Player) {
+        resolve();
+      }
+    }, 1500);
   });
 }
 
@@ -57,6 +64,7 @@ export function YouTubePlayer({
 }: YouTubePlayerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const playerRef = useRef<any>(null);
+  const [usandoFallbackIframe, setUsandoFallbackIframe] = useState(false);
 
   useEffect(() => {
     let ativo = true;
@@ -64,62 +72,82 @@ export function YouTubePlayer({
     carregarApiYouTube().then(() => {
       if (!ativo || !containerRef.current) return;
 
-      // Limpa player anterior se houver
-      if (playerRef.current?.destroy) {
-        try {
+      if (!window.YT?.Player) {
+        // Se a API externa do YouTube demorar, ativa o embed direto oficial
+        setUsandoFallbackIframe(true);
+        return;
+      }
+
+      try {
+        if (playerRef.current?.destroy) {
           playerRef.current.destroy();
-        } catch {
-          // ignore
         }
+      } catch {
+        // ignore
       }
 
       const elementoAlvo = document.createElement("div");
       containerRef.current.innerHTML = "";
       containerRef.current.appendChild(elementoAlvo);
 
-      playerRef.current = new window.YT.Player(elementoAlvo, {
-        videoId,
-        width: "100%",
-        height: "100%",
-        playerVars: {
-          autoplay: 0, // Sem autoplay conforme políticas
-          playsinline: 1,
-          rel: 0,
-          modestbranding: 1,
-        },
-        events: {
-          onReady: () => {
-            if (onPlayerPronto && playerRef.current) {
-              onPlayerPronto(playerRef.current);
-            }
+      try {
+        playerRef.current = new window.YT.Player(elementoAlvo, {
+          videoId,
+          width: "100%",
+          height: "100%",
+          host: "https://www.youtube-nocookie.com", // Modo privacidade avançada do YouTube
+          playerVars: {
+            autoplay: 0,
+            playsinline: 1,
+            rel: 0,
+            modestbranding: 1,
           },
-          onStateChange: (evento: { data: number }) => {
-            const pos = playerRef.current?.getCurrentTime?.() ?? 0;
-            if (onEstado) {
-              onEstado(evento.data, pos);
-            }
+          events: {
+            onReady: () => {
+              if (onPlayerPronto && playerRef.current) {
+                onPlayerPronto(playerRef.current);
+              }
+            },
+            onStateChange: (evento: { data: number }) => {
+              const pos = playerRef.current?.getCurrentTime?.() ?? 0;
+              if (onEstado) {
+                onEstado(evento.data, pos);
+              }
+            },
+            onError: () => {
+              setUsandoFallbackIframe(true);
+            },
           },
-        },
-      });
+        });
+      } catch (err) {
+        console.warn("Falha ao inicializar player via JS API, usando iframe direto", err);
+        setUsandoFallbackIframe(true);
+      }
     });
 
     return () => {
       ativo = false;
-      if (playerRef.current?.destroy) {
-        try {
-          playerRef.current.destroy();
-        } catch {
-          // ignore
-        }
+      try {
+        playerRef.current?.destroy?.();
+      } catch {
+        // ignore
       }
     };
   }, [videoId]);
 
   return (
-    <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-slate-900 shadow-md">
-      {/* Container oficial do Iframe - sem sobreposições sobre os controles ou tela */}
-      <div ref={containerRef} className="w-full h-full" />
+    <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-950 shadow-xl border border-slate-800">
+      {usandoFallbackIframe ? (
+        <iframe
+          src={`https://www.youtube-nocookie.com/embed/${videoId}?enablejsapi=1&autoplay=0&playsinline=1&rel=0`}
+          title="YouTube Video Player"
+          className="w-full h-full border-0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+        />
+      ) : (
+        <div ref={containerRef} className="w-full h-full" />
+      )}
     </div>
   );
 }
-
