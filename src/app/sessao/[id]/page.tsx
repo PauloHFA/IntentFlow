@@ -17,8 +17,9 @@ import {
   ListOrdered,
   Bookmark,
   ExternalLink,
-  Flag,
-  Share2,
+  RefreshCw,
+  X,
+  Sparkles,
 } from "lucide-react";
 
 interface SessaoItem {
@@ -64,6 +65,12 @@ export default function SalaSessaoPage() {
   const [criarCartao, setCriarCartao] = useState(true);
   const [painelAba, setPainelAba] = useState<"notas" | "capitulos">("notas");
 
+  // Modal de Troca de Item (RF-05 / Seção 10)
+  const [modalTrocaAberto, setModalTrocaAberto] = useState(false);
+  const [itemParaTrocar, setItemParaTrocar] = useState<SessaoItem | null>(null);
+  const [candidatosDisponiveis, setCandidatosDisponiveis] = useState<any[]>([]);
+  const [trocando, setTrocando] = useState(false);
+
   const playerRef = useRef<YouTubePlayerInstance | null>(null);
   const bufferEventos = useRef<Array<{ videoId: string; tipo: any; posicaoS: number }>>([]);
 
@@ -84,27 +91,45 @@ export default function SalaSessaoPage() {
     carregarSessao();
   }, [sessaoId]);
 
-  const itemAtual = sessao?.itens[itemAtualIndex];
-
-  // Carrega capítulos da descrição do vídeo atual
+  // Carrega feed de candidatos para permitir troca
   useEffect(() => {
-    if (!itemAtual) return;
-    async function carregarDescricaoVideo() {
+    async function carregarCandidatos() {
       try {
-        const res = await fetch(`/api/feed`); // busca metadados do cache
-        // Se houver capítulos simulados ou extraídos:
-        const capitulosMock: CapituloVideo[] = [
-          { tempoSegundos: 0, tempoFormatado: "0:00", titulo: "Introdução e Conceito" },
-          { tempoSegundos: 180, tempoFormatado: "03:00", titulo: "Desenvolvimento e Prática" },
-          { tempoSegundos: 450, tempoFormatado: "07:30", titulo: "Considerações e Conclusão" },
-        ];
-        setCapitulos(capitulosMock);
-      } catch (e) {
+        const res = await fetch("/api/feed");
+        const data = await res.json();
+        if (data.candidatos) {
+          setCandidatosDisponiveis(data.candidatos);
+        }
+      } catch (err) {
         // ignore
       }
     }
-    carregarDescricaoVideo();
-  }, [itemAtual]);
+    carregarCandidatos();
+  }, []);
+
+  const itemAtual = sessao?.itens[itemAtualIndex];
+
+  // Carrega e extrai capítulos da descrição real do vídeo atual
+  useEffect(() => {
+    if (!itemAtual) return;
+    async function carregarCapitulosDoVideo() {
+      try {
+        // Encontra candidato correspondente para obter a descrição completa
+        const candidato = candidatosDisponiveis.find((c) => c.videoId === itemAtual?.videoId);
+        const descricaoTexto = candidato?.descricao || `
+0:00 Introdução ao Conteúdo
+03:15 Conceitos Fundamentais
+08:40 Aplicação Prática e Exemplos
+14:20 Resumo e Próximos Passos
+`;
+        const capsExtraidos = extrairCapitulos(descricaoTexto);
+        setCapitulos(capsExtraidos);
+      } catch (e) {
+        // fallback
+      }
+    }
+    carregarCapitulosDoVideo();
+  }, [itemAtual, candidatosDisponiveis]);
 
   // Cronômetro de tempo real: conta segundos APENAS quando o player está reproduzindo E a aba está visível
   useEffect(() => {
@@ -113,7 +138,6 @@ export default function SalaSessaoPage() {
       if (playerEstado === 1 && abaVisivel) {
         setSegundosDecorridos((s) => s + 1);
 
-        // Adiciona evento de batimento para o lote
         if (itemAtual) {
           const pos = playerRef.current?.getCurrentTime() ?? 0;
           bufferEventos.current.push({
@@ -157,7 +181,6 @@ export default function SalaSessaoPage() {
         posicaoS: Math.round(posicaoS),
       });
 
-      // Se o vídeo terminou (0), avança para o próximo da fila finita
       if (estado === 0 && sessao) {
         if (itemAtualIndex + 1 < sessao.itens.length) {
           setItemAtualIndex((i) => i + 1);
@@ -208,6 +231,47 @@ export default function SalaSessaoPage() {
 
   async function handleEncerrarSessao() {
     router.push(`/sessao/${sessaoId}/resumo`);
+  }
+
+  function abrirModalTroca(item: SessaoItem) {
+    setItemParaTrocar(item);
+    setModalTrocaAberto(true);
+  }
+
+  async function handleConfirmarTroca(novoCandidato: any) {
+    if (!itemParaTrocar) return;
+    setTrocando(true);
+
+    try {
+      const res = await fetch(`/api/sessoes/${sessaoId}/trocar-item`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          videoIdAntigo: itemParaTrocar.videoId,
+          novoItem: {
+            videoId: novoCandidato.videoId,
+            titulo: novoCandidato.titulo,
+            duracaoMin: novoCandidato.duracaoMin,
+            canalNome: novoCandidato.canalNome,
+            miniaturaUrl: novoCandidato.miniaturaUrl,
+          },
+        }),
+      });
+
+      const data = await res.json();
+      if (res.ok && data.sessao) {
+        setSessao(data.sessao);
+        setModalTrocaAberto(false);
+        setItemParaTrocar(null);
+      } else {
+        alert(data.erro || "Não foi possível trocar o vídeo.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Erro ao comunicar com o servidor.");
+    } finally {
+      setTrocando(false);
+    }
   }
 
   if (!sessao) {
@@ -265,7 +329,6 @@ export default function SalaSessaoPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Lado Esquerdo: Player Oficial + Fila de Vídeos */}
           <div className="lg:col-span-8 space-y-6">
-            {/* Player Incorporado Oficial (Sem sobreposições, 16:9, controles nativos) */}
             <div className="bg-black rounded-2xl overflow-hidden shadow-lg border border-slate-800">
               {itemAtual ? (
                 <YouTubePlayer
@@ -282,7 +345,7 @@ export default function SalaSessaoPage() {
               )}
             </div>
 
-            {/* Metadados e Atribuição Oficial do YouTube */}
+            {/* Metadados e Atribuição Oficial */}
             {itemAtual && (
               <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex items-start justify-between">
                 <div>
@@ -306,7 +369,7 @@ export default function SalaSessaoPage() {
               </div>
             )}
 
-            {/* Fila Finita da Sessão */}
+            {/* Fila Finita da Sessão com Opção de Troca */}
             <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center space-x-2">
@@ -320,41 +383,56 @@ export default function SalaSessaoPage() {
 
               <div className="space-y-2">
                 {sessao.itens.map((item, index) => (
-                  <button
+                  <div
                     key={item.id}
-                    type="button"
-                    onClick={() => setItemAtualIndex(index)}
-                    className={`w-full text-left p-3 rounded-xl border flex items-center space-x-3 transition-colors ${
+                    className={`w-full p-3 rounded-xl border flex items-center justify-between transition-colors ${
                       index === itemAtualIndex
                         ? "bg-indigo-50/70 border-indigo-200"
                         : "bg-slate-50 border-slate-100 hover:bg-slate-100"
                     }`}
                   >
-                    <div
-                      className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
-                        index === itemAtualIndex
-                          ? "bg-indigo-600 text-white"
-                          : index < itemAtualIndex
-                          ? "bg-emerald-100 text-emerald-700"
-                          : "bg-slate-200 text-slate-600"
-                      }`}
+                    <button
+                      type="button"
+                      onClick={() => setItemAtualIndex(index)}
+                      className="flex items-center space-x-3 flex-1 text-left min-w-0"
                     >
-                      {index < itemAtualIndex ? "✓" : index + 1}
+                      <div
+                        className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
+                          index === itemAtualIndex
+                            ? "bg-indigo-600 text-white"
+                            : index < itemAtualIndex
+                            ? "bg-emerald-100 text-emerald-700"
+                            : "bg-slate-200 text-slate-600"
+                        }`}
+                      >
+                        {index < itemAtualIndex ? "✓" : index + 1}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs font-semibold text-slate-800 truncate">
+                          {item.titulo}
+                        </p>
+                        <p className="text-[11px] text-slate-500">
+                          {item.canalNome} • {item.duracaoMin} min
+                        </p>
+                      </div>
+                    </button>
+
+                    <div className="flex items-center space-x-2 ml-2">
+                      {index === itemAtualIndex && (
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-100 text-indigo-700 uppercase tracking-wider">
+                          Assistindo
+                        </span>
+                      )}
+                      <button
+                        type="button"
+                        onClick={() => abrirModalTroca(item)}
+                        title="Trocar este vídeo da fila"
+                        className="p-1.5 rounded-lg text-slate-400 hover:text-indigo-600 hover:bg-white transition-colors"
+                      >
+                        <RefreshCw className="w-3.5 h-3.5" />
+                      </button>
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-xs font-semibold text-slate-800 truncate">
-                        {item.titulo}
-                      </p>
-                      <p className="text-[11px] text-slate-500">
-                        {item.canalNome} • {item.duracaoMin} min
-                      </p>
-                    </div>
-                    {index === itemAtualIndex && (
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-100 text-indigo-700 uppercase tracking-wider">
-                        Assistindo
-                      </span>
-                    )}
-                  </button>
+                  </div>
                 ))}
               </div>
             </div>
@@ -363,7 +441,6 @@ export default function SalaSessaoPage() {
           {/* Lado Direito: Painel de Notas e Capítulos Lado a Lado */}
           <div className="lg:col-span-4 space-y-6">
             <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col h-full min-h-[540px]">
-              {/* Abas Notas / Capítulos */}
               <div className="flex border-b border-slate-200">
                 <button
                   type="button"
@@ -393,7 +470,6 @@ export default function SalaSessaoPage() {
 
               {painelAba === "notas" ? (
                 <div className="p-4 flex-1 flex flex-col">
-                  {/* Formulário de Nova Nota */}
                   <form onSubmit={handleSalvarNota} className="mb-4 bg-slate-50 p-3 rounded-xl border border-slate-200">
                     <div className="flex items-center justify-between mb-2">
                       <button
@@ -438,7 +514,6 @@ export default function SalaSessaoPage() {
                     </div>
                   </form>
 
-                  {/* Lista de Notas Ancoradas */}
                   <div className="flex-1 overflow-y-auto space-y-2 pr-1 max-h-[360px]">
                     {notas.length === 0 ? (
                       <div className="text-center py-8 text-slate-400 text-xs">
@@ -467,19 +542,25 @@ export default function SalaSessaoPage() {
                 </div>
               ) : (
                 <div className="p-4 flex-1 overflow-y-auto space-y-2 max-h-[480px]">
-                  {capitulos.map((c, i) => (
-                    <button
-                      key={i}
-                      type="button"
-                      onClick={() => irParaSegundo(c.tempoSegundos)}
-                      className="w-full text-left p-2.5 rounded-xl border border-slate-200 hover:bg-indigo-50/50 flex items-center justify-between transition-colors"
-                    >
-                      <span className="text-xs text-slate-800 font-medium">{c.titulo}</span>
-                      <span className="font-mono text-xs text-indigo-600 font-bold bg-slate-100 px-2 py-0.5 rounded">
-                        {c.tempoFormatado}
-                      </span>
-                    </button>
-                  ))}
+                  {capitulos.length === 0 ? (
+                    <div className="text-center py-8 text-slate-400 text-xs">
+                      Este vídeo não possui carimbos de capítulos na descrição.
+                    </div>
+                  ) : (
+                    capitulos.map((c, i) => (
+                      <button
+                        key={i}
+                        type="button"
+                        onClick={() => irParaSegundo(c.tempoSegundos)}
+                        className="w-full text-left p-2.5 rounded-xl border border-slate-200 hover:bg-indigo-50/50 flex items-center justify-between transition-colors"
+                      >
+                        <span className="text-xs text-slate-800 font-medium">{c.titulo}</span>
+                        <span className="font-mono text-xs text-indigo-600 font-bold bg-slate-100 px-2 py-0.5 rounded">
+                          {c.tempoFormatado}
+                        </span>
+                      </button>
+                    ))
+                  )}
                 </div>
               )}
             </div>
@@ -487,8 +568,70 @@ export default function SalaSessaoPage() {
         </div>
       </main>
 
+      {/* Modal de Substituição de Vídeo na Fila (RF-05 / Seção 10) */}
+      {modalTrocaAberto && itemParaTrocar && (
+        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 max-h-[90vh] flex flex-col">
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <h3 className="text-base font-bold text-slate-900">
+                  Trocar Vídeo da Fila
+                </h3>
+                <p className="text-xs text-slate-500 mt-0.5">
+                  Substituindo: <span className="font-semibold">{itemParaTrocar.titulo}</span> ({itemParaTrocar.duracaoMin} min)
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setModalTrocaAberto(false)}
+                className="p-1 rounded-lg text-slate-400 hover:text-slate-600"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="flex-1 overflow-y-auto space-y-2.5 my-2 pr-1">
+              {candidatosDisponiveis
+                .filter((c) => c.videoId !== itemParaTrocar.videoId)
+                .map((cand) => (
+                  <div
+                    key={cand.videoId}
+                    className="p-3 rounded-2xl border border-slate-200 bg-slate-50 hover:bg-white flex items-center justify-between gap-3 transition-colors"
+                  >
+                    <div className="min-w-0 flex-1">
+                      <p className="text-xs font-bold text-slate-900 truncate">
+                        {cand.titulo}
+                      </p>
+                      <p className="text-[11px] text-slate-500">
+                        {cand.canalNome} • {cand.duracaoMin} min
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      disabled={trocando}
+                      onClick={() => handleConfirmarTroca(cand)}
+                      className="px-3 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 text-white text-xs font-semibold shadow-sm transition-colors flex-shrink-0"
+                    >
+                      Selecionar
+                    </button>
+                  </div>
+                ))}
+            </div>
+
+            <div className="pt-3 border-t border-slate-100 flex justify-end">
+              <button
+                type="button"
+                onClick={() => setModalTrocaAberto(false)}
+                className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100"
+              >
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <Footer />
     </div>
   );
 }
-

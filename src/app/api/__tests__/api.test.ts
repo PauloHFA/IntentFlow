@@ -7,9 +7,13 @@ import { GET as getRevisaoHoje } from "../revisao/hoje/route";
 import { POST as postRevisaoCartao } from "../revisao/[cartaoId]/route";
 import { GET as exportarConta } from "../conta/exportar/route";
 import { DELETE as deletarConta } from "../conta/route";
+import { POST as postTrocarItem } from "../sessoes/[id]/trocar-item/route";
 import { db } from "@/lib/db/store";
 
 describe("Rotas da API Interna do IntentFlow", () => {
+  beforeEach(() => {
+    db.resetarParaPadrao();
+  });
   it("GET /api/saude/cota retorna estado de cota e cache", async () => {
     const res = await getCota();
     const data = await res.json();
@@ -84,7 +88,7 @@ describe("Rotas da API Interna do IntentFlow", () => {
   });
 
   it("POST /api/revisao/[cartaoId] atualiza o cartão com o algoritmo SM-2", async () => {
-    const cartao = db.cartoes[0];
+    const cartao = db.criarCartao("nota-1", "O que é SM-2?", "Algoritmo de repetição espaçada");
     expect(cartao).toBeDefined();
 
     const req = new Request(`http://localhost/api/revisao/${cartao.id}`, {
@@ -111,6 +115,36 @@ describe("Rotas da API Interna do IntentFlow", () => {
     expect(res.headers.get("Content-Type")).toContain("text/markdown");
     const texto = await res.text();
     expect(texto).toContain("# IntentFlow — Exportação");
+  });
+
+  it("POST /api/sessoes/[id]/trocar-item substitui item preservando o orçamento", async () => {
+    // Cria sessão teste
+    const sessao = db.criarSessao("Sessão Teste Troca", 40, [
+      { videoId: "v-velho", ordem: 1, status: "pendente", segundosAssistidos: 0, duracaoMin: 15, titulo: "Vídeo Antigo" },
+    ]);
+
+    const req = new Request(`http://localhost/api/sessoes/${sessao.id}/trocar-item`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        videoIdAntigo: "v-velho",
+        novoItem: {
+          videoId: "v-novo",
+          titulo: "Vídeo Substituto",
+          duracaoMin: 18,
+          canalNome: "Canal Novo",
+        },
+      }),
+    });
+
+    const res = await postTrocarItem(req, {
+      params: Promise.resolve({ id: sessao.id }),
+    });
+    const data = await res.json();
+
+    expect(res.status).toBe(200);
+    expect(data.sessao.itens[0].videoId).toBe("v-novo");
+    expect(data.sessao.itens[0].duracaoMin).toBe(18);
   });
 
   it("DELETE /api/conta apaga todas as notas, sessões e cartões do usuário", async () => {

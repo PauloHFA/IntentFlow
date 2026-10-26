@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { Compass, PlayCircle, BookOpen, Tv, Activity, ShieldCheck } from "lucide-react";
+import { Compass, PlayCircle, BookOpen, Tv, Activity, ShieldCheck, TrendingUp } from "lucide-react";
 
 export function Navbar() {
   return (
@@ -48,6 +48,13 @@ export function Navbar() {
           >
             <Tv className="w-4 h-4" />
             <span className="hidden md:inline">Canais</span>
+          </Link>
+          <Link
+            href="/painel"
+            className="flex items-center space-x-1.5 px-3 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors"
+          >
+            <TrendingUp className="w-4 h-4" />
+            <span className="hidden md:inline">Painel</span>
           </Link>
           <Link
             href="/status"
