@@ -37,50 +37,6 @@ function calcularRelevancia(
     }
   }
 
-  // Bônus específicos por temas recorrentes
-  const objNorm = normalizarTexto(objetivo);
-  if (
-    (objNorm.includes("geograf") || objNorm.includes("relevo") || objNorm.includes("clima") || objNorm.includes("mapa")) &&
-    (alvo.includes("geograf") || alvo.includes("terra") || alvo.includes("clima") || alvo.includes("tecton"))
-  ) {
-    score += 400;
-  }
-
-  if (
-    (objNorm.includes("ingl") || objNorm.includes("english") || objNorm.includes("idioma")) &&
-    (alvo.includes("ingl") || alvo.includes("english") || alvo.includes("grammar") || alvo.includes("bbc"))
-  ) {
-    score += 400;
-  }
-
-  if (
-    (objNorm.includes("fisic") || objNorm.includes("física") || objNorm.includes("newton") || objNorm.includes("termo")) &&
-    (alvo.includes("fisic") || alvo.includes("física") || alvo.includes("energia") || alvo.includes("newton"))
-  ) {
-    score += 400;
-  }
-
-  if (
-    (objNorm.includes("biolog") || objNorm.includes("cerebro") || objNorm.includes("cérebro") || objNorm.includes("dna")) &&
-    (alvo.includes("biolog") || alvo.includes("neuro") || alvo.includes("memoria") || alvo.includes("corpo"))
-  ) {
-    score += 400;
-  }
-
-  if (
-    (objNorm.includes("histor") || objNorm.includes("história") || objNorm.includes("revoluc") || objNorm.includes("guerra")) &&
-    (alvo.includes("histor") || alvo.includes("guerra") || alvo.includes("revoluc") || alvo.includes("seculo"))
-  ) {
-    score += 400;
-  }
-
-  if (
-    (objNorm.includes("react") || objNorm.includes("program") || objNorm.includes("codigo") || objNorm.includes("dev")) &&
-    (alvo.includes("react") || alvo.includes("code") || alvo.includes("javascript") || alvo.includes("fireship"))
-  ) {
-    score += 400;
-  }
-
   return score;
 }
 
@@ -93,9 +49,14 @@ export async function GET(req: Request) {
 
     const mapaVideos = new Map<string, CandidatoVideo & { descricao?: string }>();
 
-    // 1. Busca vídeos temáticos no catálogo de disciplinas (Geografia, Física, Inglês, Biologia, História, etc.)
-    const termoBuscaCatalogo = disciplinaId || objetivo;
-    const videosDoCatalogo = buscarVideosCatalogo(termoBuscaCatalogo);
+    // 1. Busca vídeos temáticos no catálogo de disciplinas
+    const videosDoCatalogo = buscarVideosCatalogo(objetivo, disciplinaId || undefined);
+
+    // Identifica se estamos em uma disciplina específica (para evitar contaminação de outras matérias)
+    const ehEscopoEstrito =
+      (disciplinaId && disciplinaId !== "todas") ||
+      (videosDoCatalogo.length > 0 &&
+        videosDoCatalogo.every((v) => v.disciplinaId === videosDoCatalogo[0].disciplinaId));
 
     for (const v of videosDoCatalogo) {
       const bonusRelevancia = calcularRelevancia(
@@ -113,12 +74,30 @@ export async function GET(req: Request) {
         canalNome: v.canalNome,
         miniaturaUrl: v.miniaturaUrl,
         duracaoMin: v.duracaoMin,
-        // Pontuação de valor para a mochila: Base alta + Relevância semântica
-        valor: 50 + bonusRelevancia,
+        valor: 100 + bonusRelevancia,
       });
     }
 
-    // 2. Consulta vídeos dos canais do usuário
+    // 2. Se o usuário escolheu uma disciplina específica (ex: Geografia, Matemática, Química),
+    // NUNCA misturamos canais de outras matérias na playlist! Mantém o escopo 100% puro!
+    if (ehEscopoEstrito) {
+      const candidatosEstritos = Array.from(mapaVideos.values()).sort(
+        (a, b) => b.valor - a.valor
+      );
+
+      return NextResponse.json({
+        candidatos: candidatosEstritos,
+        disciplinasDisponiveis: CATALOGO_DISCIPLINAS.map((d) => ({
+          id: d.id,
+          nome: d.nome,
+          icone: d.icone,
+          descricao: d.descricao,
+          corGradiente: d.corGradiente,
+        })),
+      });
+    }
+
+    // 3. Caso o usuário esteja na busca geral/todas, inclui os uploads dos canais cadastrados
     let canais = db.listarCanais();
     if (intencaoId && intencaoId !== "todas") {
       canais = canais.filter((c) => c.intencaoId === intencaoId);
@@ -208,9 +187,8 @@ export async function GET(req: Request) {
               canal.titulo
             );
 
-            // Se o vídeo já foi adicionado pelo catálogo, preserva ou atualiza com a maior pontuação
             const existente = mapaVideos.get(v.id);
-            const valorTotal = (canal.prioridade * 10) + bonusRelevancia;
+            const valorTotal = canal.prioridade * 10 + bonusRelevancia;
 
             if (!existente || valorTotal > existente.valor) {
               mapaVideos.set(v.id, {

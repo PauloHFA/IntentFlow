@@ -83,21 +83,19 @@ export default function IniciarSessaoPage() {
 
   function selecionarDisciplinaCard(disc: DisciplinaCard) {
     setDisciplinaAtiva(disc.id);
-    if (disc.id === "geografia") {
-      setObjetivo("Geografia física, placas tectônicas e relevo");
-    } else if (disc.id === "ingles") {
-      setObjetivo("Aprender inglês, conversação e vocabulário");
-    } else if (disc.id === "fisica") {
-      setObjetivo("Física fundamental, leis de Newton e gravidade");
-    } else if (disc.id === "tecnologia") {
-      setObjetivo("React, desenvolvimento web e engenharia de software");
-    } else if (disc.id === "biologia") {
-      setObjetivo("Biologia humana, cérebro e memória");
-    } else if (disc.id === "historia") {
-      setObjetivo("História moderna e revoluções científicas");
-    } else {
-      setObjetivo(disc.nome);
-    }
+    const sugestoesObjetivo: Record<string, string> = {
+      geografia: "Geografia física, placas tectônicas e relevo",
+      matematica: "Matemática, funções, probabilidade e cálculo",
+      portugues: "Língua Portuguesa, gramática e redação",
+      fisica: "Física fundamental, leis de Newton e termodinâmica",
+      quimica: "Química geral, tabela periódica e estequiometria",
+      biologia: "Biologia humana, citologia e ecologia",
+      historia: "História do Brasil e História Geral",
+      ingles: "Inglês para conversação e gramática prática",
+      filosofia: "Filosofia, sociologia e pensamento crítico",
+      tecnologia: "Programação, algoritmos e desenvolvimento de software",
+    };
+    setObjetivo(sugestoesObjetivo[disc.id] || disc.nome);
   }
 
   async function handleIniciarSessao() {
@@ -165,7 +163,7 @@ export default function IniciarSessaoPage() {
             </button>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
             {disciplinas.map((d) => (
               <button
                 key={d.id}
