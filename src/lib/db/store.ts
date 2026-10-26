@@ -253,6 +253,46 @@ class DatabaseStore {
       cartoesPendentesHoje: this.listarCartoesParaHoje().length,
     };
   }
+
+  // Exportação e Exclusão (RF-14 / LGPD)
+  exportarDadosUsuario(usuarioId = USUARIO_PADRAO_ID) {
+    const usuario = this.usuarios.find((u) => u.id === usuarioId);
+    const sessoes = this.sessoes.filter((s) => s.usuarioId === usuarioId);
+    const notas = this.notas.filter((n) => n.usuarioId === usuarioId);
+    const canais = this.canais.filter((c) => c.usuarioId === usuarioId);
+    const notaIds = new Set(notas.map((n) => n.id));
+    const cartoes = this.cartoes.filter((c) => notaIds.has(c.notaId));
+
+    return {
+      usuarioNome: usuario?.nome || "Estudante Intencional",
+      dataExportacao: new Date().toISOString(),
+      sessoes,
+      notas,
+      cartoes,
+      canais,
+    };
+  }
+
+  excluirDadosUsuario(usuarioId = USUARIO_PADRAO_ID) {
+    const sessoesRemovidas = this.sessoes.filter((s) => s.usuarioId === usuarioId);
+    const sessoesIds = new Set(sessoesRemovidas.map((s) => s.id));
+
+    this.sessoes = this.sessoes.filter((s) => s.usuarioId !== usuarioId);
+    this.eventos = this.eventos.filter((e) => !sessoesIds.has(e.sessaoId));
+
+    const notasRemovidas = this.notas.filter((n) => n.usuarioId === usuarioId);
+    const notasIds = new Set(notasRemovidas.map((n) => n.id));
+
+    this.notas = this.notas.filter((n) => n.usuarioId !== usuarioId);
+    this.cartoes = this.cartoes.filter((c) => !notasIds.has(c.notaId));
+    this.revisoes = []; // limpa histórico de revisões associadas
+    this.canais = this.canais.filter((c) => c.usuarioId !== usuarioId);
+
+    return {
+      sucesso: true,
+      mensagem: "Todos os dados pessoais, notas, sessões e histórico foram excluídos permanentemente.",
+    };
+  }
 }
 
 // Singleton na aplicação

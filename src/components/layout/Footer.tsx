@@ -35,6 +35,9 @@ export function Footer() {
             <Link href="/status" className="hover:text-indigo-600 transition-colors">
               Conformidade e Cota
             </Link>
+            <Link href="/configuracoes" className="hover:text-indigo-600 transition-colors">
+              Exportar e Privacidade (LGPD)
+            </Link>
           </div>
         </div>
 

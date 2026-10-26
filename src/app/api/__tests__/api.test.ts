@@ -5,6 +5,8 @@ import { POST as postSessoes } from "../sessoes/route";
 import { POST as postNotas } from "../notas/route";
 import { GET as getRevisaoHoje } from "../revisao/hoje/route";
 import { POST as postRevisaoCartao } from "../revisao/[cartaoId]/route";
+import { GET as exportarConta } from "../conta/exportar/route";
+import { DELETE as deletarConta } from "../conta/route";
 import { db } from "@/lib/db/store";
 
 describe("Rotas da API Interna do IntentFlow", () => {
@@ -99,6 +101,27 @@ describe("Rotas da API Interna do IntentFlow", () => {
     expect(res.status).toBe(200);
     expect(data.cartao.repeticoes).toBe(1);
     expect(data.cartao.intervaloDias).toBe(1);
+  });
+
+  it("GET /api/conta/exportar exporta dados em Markdown com cabeçalhos apropriados", async () => {
+    const req = new Request("http://localhost/api/conta/exportar?formato=markdown");
+    const res = await exportarConta(req);
+
+    expect(res.status).toBe(200);
+    expect(res.headers.get("Content-Type")).toContain("text/markdown");
+    const texto = await res.text();
+    expect(texto).toContain("# IntentFlow — Exportação");
+  });
+
+  it("DELETE /api/conta apaga todas as notas, sessões e cartões do usuário", async () => {
+    const res = await deletarConta();
+    const data = await res.json();
+
+    expect(res.status).toBe(200);
+    expect(data.sucesso).toBe(true);
+    expect(db.notas.length).toBe(0);
+    expect(db.sessoes.length).toBe(0);
+    expect(db.cartoes.length).toBe(0);
   });
 });
 

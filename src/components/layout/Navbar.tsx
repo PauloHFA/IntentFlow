@@ -56,6 +56,14 @@ export function Navbar() {
             <Activity className="w-4 h-4" />
             <span className="hidden lg:inline">Cota & Cache</span>
           </Link>
+          <Link
+            href="/configuracoes"
+            className="flex items-center space-x-1.5 px-3 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors"
+            title="Configurações e Exportação"
+          >
+            <span className="text-sm">⚙️</span>
+            <span className="hidden xl:inline">Configurações</span>
+          </Link>
         </nav>
       </div>
     </header>
