@@ -95,3 +95,4 @@ describe("Sistema de Gamificação e Aprendizado Deliberado", () => {
     expect(streak).toBe(3);
   });
 });
+

@@ -21,3 +21,4 @@ export interface PerfilGamificacao {
   totalSessoesConcluidas: number;
   minutosFocoTotal: number;
 }
+
