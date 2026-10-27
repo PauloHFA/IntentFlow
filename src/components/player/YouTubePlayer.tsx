@@ -13,6 +13,9 @@ export interface YouTubePlayerInstance {
   seekTo: (segundos: number, permitirSeek: boolean) => void;
   playVideo: () => void;
   pauseVideo: () => void;
+  mute?: () => void;
+  unMute?: () => void;
+  isMuted?: () => boolean;
 }
 
 declare global {

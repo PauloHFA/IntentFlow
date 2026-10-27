@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
+import confetti from "canvas-confetti";
+import { tocarSomVitoria } from "@/lib/audio/somConquista";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { formatarSegundos } from "@/lib/algorithms/duracao";
@@ -36,6 +38,19 @@ export default function ResumoSessaoPage() {
           setSessao(data.sessao);
           setNotas(data.notas || []);
           if (data.sessao.reflexao) setReflexao(data.sessao.reflexao);
+
+          // Dispara celebração sonora e visual de conquista
+          try {
+            tocarSomVitoria();
+            confetti({
+              particleCount: 120,
+              spread: 75,
+              origin: { y: 0.6 },
+              colors: ["#6366f1", "#10b981", "#f59e0b", "#ec4899", "#3b82f6"],
+            });
+          } catch {
+            // ignore
+          }
         }
       } catch (err) {
         console.error(err);

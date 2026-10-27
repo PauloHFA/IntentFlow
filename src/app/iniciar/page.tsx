@@ -32,6 +32,7 @@ export default function IniciarSessaoPage() {
   const [objetivo, setObjetivo] = useState("Geografia mundial e placas tectônicas");
   const [tempoMinutos, setTempoMinutos] = useState(35);
   const [disciplinaAtiva, setDisciplinaAtiva] = useState<string>("geografia");
+  const [profundidade, setProfundidade] = useState<"todos" | "rapido" | "intermediario" | "aprofundado">("todos");
   const [disciplinas, setDisciplinas] = useState<DisciplinaCard[]>([]);
   const [candidatos, setCandidatos] = useState<CandidatoVideo[]>([]);
   const [filaOtimizada, setFilaOtimizada] = useState<CandidatoVideo[]>([]);
@@ -50,6 +51,9 @@ export default function IniciarSessaoPage() {
         if (objetivo.trim()) {
           queryParams.set("objetivo", objetivo.trim());
         }
+        if (profundidade !== "todos") {
+          queryParams.set("profundidade", profundidade);
+        }
 
         const res = await fetch(`/api/feed?${queryParams.toString()}`);
         const data = await res.json();
@@ -67,7 +71,7 @@ export default function IniciarSessaoPage() {
     }, 200);
 
     return () => clearTimeout(timer);
-  }, [disciplinaAtiva, objetivo]);
+  }, [disciplinaAtiva, objetivo, profundidade]);
 
   // Recalcula a fila pela Mochila 0/1 sempre que os candidatos ou o tempo mudam
   useEffect(() => {
@@ -240,6 +244,35 @@ export default function IniciarSessaoPage() {
                 <span>45 min</span>
                 <span>60 min</span>
                 <span>90 min</span>
+              </div>
+            </div>
+
+            {/* SELETOR DE PROFUNDIDADE / INTENSIDADE DA TRILHA */}
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2.5">
+                Intensidade dos Vídeos
+              </label>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                {[
+                  { id: "todos", label: "Misto", desc: "Qualquer duração", cor: "border-slate-300" },
+                  { id: "rapido", label: "⚡ Rápidos", desc: "5 a 12 min", cor: "border-emerald-300" },
+                  { id: "intermediario", label: "🎯 Práticos", desc: "12 a 20 min", cor: "border-amber-300" },
+                  { id: "aprofundado", label: "📚 Master", desc: "20+ min", cor: "border-indigo-300" },
+                ].map((p) => (
+                  <button
+                    key={p.id}
+                    type="button"
+                    onClick={() => setProfundidade(p.id as any)}
+                    className={`py-2 px-2.5 rounded-xl border text-left transition-all ${
+                      profundidade === p.id
+                        ? "bg-indigo-50 border-indigo-500 ring-2 ring-indigo-500/20 font-bold"
+                        : "bg-white border-slate-200 hover:border-slate-300 font-medium"
+                    }`}
+                  >
+                    <div className="text-xs text-slate-900 leading-tight">{p.label}</div>
+                    <div className="text-[10px] text-slate-400 mt-0.5">{p.desc}</div>
+                  </button>
+                ))}
               </div>
             </div>
 

@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import confetti from "canvas-confetti";
+import { tocarSomVitoria } from "@/lib/audio/somConquista";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import {
@@ -72,6 +74,16 @@ export default function RevisaoPage() {
         setIndiceAtual((i) => i + 1);
       } else {
         setConcluido(true);
+        try {
+          tocarSomVitoria();
+          confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 },
+          });
+        } catch {
+          // ignore
+        }
       }
     } catch (err) {
       console.error(err);

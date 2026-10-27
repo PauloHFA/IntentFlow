@@ -8,10 +8,13 @@ O **IntentFlow** é um aplicativo web projetado para inverter a lógica tradicio
 
 ## 🎯 Proposta de Valor e Diferenciais
 
-- **Orçamento de Tempo & Algoritmo da Mochila (0/1 Knapsack)**: O estudante define seu objetivo e quantos minutos tem disponível. O algoritmo seleciona a combinação ideal de vídeos dos canais prioritários que cabem no tempo estipulado.
+- **Orçamento de Tempo & Algoritmo da Mochila (0/1 Knapsack)**: O estudante define seu objetivo, nível de intensidade e quantos minutos tem disponível. O algoritmo seleciona a combinação ideal de vídeos pedagógicos que cabem no tempo estipulado.
+- **Modo Foco Zen (Cinema / Distraction-Free)**: Uma interface imersiva de tela cheia que oculta menus e distrações, mantendo apenas o vídeo oficial e o bloco de notas em tema escuro focado.
+- **Controle Fluido por Atalhos de Teclado**: Controle reprodução, avanço de 10s e anotações instantâneas sem tirar as mãos do teclado (`N`, `Espaço`, `J`, `L`, `M`, `Z`, `C`, `?`).
 - **Fila Finita e Foco**: Ao terminar o último vídeo, a sessão é concluída. Sem recomendações aleatórias nem autoplay contínuo.
-- **Notas Ancoradas no Tempo**: Capture insights associados à posição exata do player oficial (`currentTime`). Clicar na nota leva o player ao segundo correspondente (`seekTo`).
-- **Repetição Espaçada (SM-2)**: Cada nota pode ser convertida em cartões de revisão inteligente com autoavaliação (0 a 5) recalculando intervalos ideais para fixação a longo prazo.
+- **Notas Ancoradas no Tempo & Flashcards SM-2**: Capture insights associados à posição exata do player oficial (`currentTime`). Crie cartões com **Pergunta (Frente)** e **Resposta (Verso)** para teste ativo de memória (*Active Recall*).
+- **Repetição Espaçada (SM-2)**: Cada nota/flashcard entra na esteira de revisão diária com cálculo dinâmico de intervalos e fator de facilidade para fixação a longo prazo.
+- **Gamificação & Reforço Positivo**: Ganhe XP por minutos assistidos e notas criadas, suba de nível de maestria, mantenha streaks diários e comemore com confetes e feedback sonoro harmônico via Web Audio API.
 - **Medição de Tempo de Atenção Real**: O cronômetro de foco só avança se o player oficial estiver em reprodução e a aba do navegador estiver visível.
 
 ---
@@ -74,7 +77,7 @@ src/
 │   ├── db/                  # Modelo de dados e repositório
 │   └── youtube/             # Cliente de servidor ytGet e gerenciador de cota
 docs/
-└── adr/                     # Architectural Decision Records (ADR-001 a ADR-006)
+└── adr/                     # Architectural Decision Records (ADR-001 a ADR-007)
 ```
 
 ---
@@ -87,7 +90,7 @@ docs/
 
 ### Instalação
 ```bash
-git clone https://github.com/seu-usuario/intent-flow.git
+git clone https://github.com/PauloHFA/IntentFlow.git
 cd IntentFlow
 npm install
 ```
@@ -103,7 +106,7 @@ cp .env.example .env.local
 ```bash
 npm test
 ```
-*30 testes cobrindo algoritmos, conformidade de políticas de cache, rotas de API e YouTube client.*
+*47 testes cobrindo algoritmos (Mochila, SM-2, Capítulos), isolamento estrito de matérias, conformidade de políticas de cache, rotas de API e YouTube client.*
 
 ### Iniciar Servidor de Desenvolvimento
 ```bash

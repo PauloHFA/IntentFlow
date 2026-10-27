@@ -46,6 +46,7 @@ export async function GET(req: Request) {
     const intencaoId = searchParams.get("intencaoId");
     const objetivo = searchParams.get("objetivo") || "";
     const disciplinaId = searchParams.get("disciplinaId");
+    const profundidade = searchParams.get("profundidade") || "todos";
 
     const mapaVideos = new Map<string, CandidatoVideo & { descricao?: string }>();
 
@@ -59,6 +60,15 @@ export async function GET(req: Request) {
         videosDoCatalogo.every((v) => v.disciplinaId === videosDoCatalogo[0].disciplinaId));
 
     for (const v of videosDoCatalogo) {
+      let bonusProfundidade = 0;
+      if (profundidade === "rapido" && v.duracaoMin <= 12) {
+        bonusProfundidade = 300;
+      } else if (profundidade === "intermediario" && v.duracaoMin >= 10 && v.duracaoMin <= 20) {
+        bonusProfundidade = 300;
+      } else if (profundidade === "aprofundado" && v.duracaoMin >= 18) {
+        bonusProfundidade = 300;
+      }
+
       const bonusRelevancia = calcularRelevancia(
         objetivo || disciplinaId || "",
         v.titulo,
@@ -74,7 +84,7 @@ export async function GET(req: Request) {
         canalNome: v.canalNome,
         miniaturaUrl: v.miniaturaUrl,
         duracaoMin: v.duracaoMin,
-        valor: 100 + bonusRelevancia,
+        valor: 100 + bonusRelevancia + bonusProfundidade,
       });
     }
 
