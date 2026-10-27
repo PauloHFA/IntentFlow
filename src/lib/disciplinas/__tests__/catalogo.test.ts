@@ -30,6 +30,14 @@ describe("Catálogo de Disciplinas e Playlists Dinâmicas", () => {
     expect(resultado[0].tags).toContain("geografia");
   });
 
+  it("garante variedade substancial: cada disciplina possui pelo menos 5 vídeos autênticos", () => {
+    for (const d of CATALOGO_DISCIPLINAS) {
+      expect(d.videos.length).toBeGreaterThanOrEqual(5);
+      const duracaoTotal = d.videos.reduce((acc, v) => acc + v.duracaoMin, 0);
+      expect(duracaoTotal).toBeGreaterThanOrEqual(60); // Pelo menos 60 min de conteúdo por matéria
+    }
+  });
+
   it("garante que NENHUM vídeo no catálogo contém o ID do Despacito (kJQP7kiw5Fk)", () => {
     const todosVideos = CATALOGO_DISCIPLINAS.flatMap((d) => d.videos);
     for (const v of todosVideos) {

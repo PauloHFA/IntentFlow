@@ -21,16 +21,17 @@ export interface VideoDisciplina {
 }
 
 export const CATALOGO_DISCIPLINAS: Disciplina[] = [
-  // 1. GEOGRAFIA
+  // 1. GEOGRAFIA & GEOPOLÍTICA
   {
     id: "geografia",
     nome: "Geografia & Geopolítica",
     icone: "🌍",
-    descricao: "Cartografia, placas tectônicas, relevo, biomas terrestres e dinâmica geopolítica.",
+    descricao: "Cartografia, placas tectônicas, biomas terrestres, clima e dinâmica geopolítica internacional.",
     corGradiente: "from-emerald-600 to-teal-800",
     palavrasChave: [
       "geografia",
       "geopolitica",
+      "geopolítica",
       "relevo",
       "clima",
       "biomas",
@@ -41,6 +42,7 @@ export const CATALOGO_DISCIPLINAS: Disciplina[] = [
       "cartografia",
       "tectonica",
       "placas",
+      "fronteiras",
     ],
     videos: [
       {
@@ -88,6 +90,36 @@ export const CATALOGO_DISCIPLINAS: Disciplina[] = [
         tags: ["geografia", "cartografia", "mapas", "geopolitica"],
         disciplinaId: "geografia",
       },
+      {
+        videoId: "e-WO-c9xHms",
+        titulo: "Como a Geografia Moldou o Poder e Recursos das Nações",
+        canalNome: "Wendover Productions",
+        duracaoMin: 15,
+        duracaoIso: "PT15M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=480&h=270&fit=crop",
+        descricao: `Como bacias hidrográficas navegáveis, barreiras montanhosas e clima definem o poder geopolítico.
+0:00 A geografia como destino econômico
+04:00 Portos naturais e redes fluviais
+08:30 Recursos minerais e fronteiras defensivas
+12:10 Geopolítica dos corredores comerciais`,
+        tags: ["geografia", "geopolitica", "recursos", "economia"],
+        disciplinaId: "geografia",
+      },
+      {
+        videoId: "m-TFENSuJ5U",
+        titulo: "Geopolítica e Fronteiras: A Geografia da Eurásia",
+        canalNome: "RealLifeLore",
+        duracaoMin: 14,
+        duracaoIso: "PT14M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=480&h=270&fit=crop",
+        descricao: `Análise demográfica, recursos energéticos e o relevo que conecta a Europa e a Ásia.
+0:00 A estepe eurasiática e o clima continental
+03:45 Acesso a mares quentes e portos
+07:30 Rotas energéticas de gás e petróleo
+11:00 A nova Rota da Seda`,
+        tags: ["geografia", "geopolitica", "fronteiras", "mapas"],
+        disciplinaId: "geografia",
+      },
     ],
   },
 
@@ -110,6 +142,8 @@ export const CATALOGO_DISCIPLINAS: Disciplina[] = [
       "cálculo",
       "derivada",
       "vetores",
+      "probabilidade",
+      "fourier",
     ],
     videos: [
       {
@@ -187,6 +221,51 @@ export const CATALOGO_DISCIPLINAS: Disciplina[] = [
         tags: ["matematica", "probabilidade", "estatistica", "bayes"],
         disciplinaId: "matematica",
       },
+      {
+        videoId: "HEfHFsfGXjs",
+        titulo: "A Resposta Mais Inesperada Para um Enigma de Contagem (Pi)",
+        canalNome: "3Blue1Brown",
+        duracaoMin: 15,
+        duracaoIso: "PT15M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=480&h=270&fit=crop",
+        descricao: `Como blocos colidindo calculam os dígitos do Pi através de conservação de energia e momento.
+0:00 O problema dos blocos e a massa exponencial
+04:20 Contando colisões elásticas
+08:50 A conexão geométrica com círculos
+12:30 Por que o número Pi aparece aqui`,
+        tags: ["matematica", "pi", "geometria", "curiosidades"],
+        disciplinaId: "matematica",
+      },
+      {
+        videoId: "d4EgbgTm0Bg",
+        titulo: "Visualizando Números em 4 Dimensões: Quatérnios",
+        canalNome: "3Blue1Brown",
+        duracaoMin: 18,
+        duracaoIso: "PT18M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=480&h=270&fit=crop",
+        descricao: `A extensão dos números complexos para 4D e rotações 3D sem gimbal lock.
+0:00 Números complexos como rotações no plano
+05:15 O nascimento dos Quatérnios por Hamilton
+11:00 Rotações tridimensionais suaves
+15:30 Aplicações em computação gráfica e robótica`,
+        tags: ["matematica", "algebra", "quaternios", "geometria"],
+        disciplinaId: "matematica",
+      },
+      {
+        videoId: "spUNpyF58BY",
+        titulo: "A Transformada de Fourier: Uma Introdução Visual",
+        canalNome: "3Blue1Brown",
+        duracaoMin: 21,
+        duracaoIso: "PT21M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1596495578065-6e0763fa1178?w=480&h=270&fit=crop",
+        descricao: `Como decompor qualquer sinal ou onda complexa em frequências puras e simples.
+0:00 O que é a Transformada de Fourier
+05:20 Enrolando o sinal em torno de um círculo
+12:10 O centro de massa e picos de frequência
+17:40 Aplicações em áudio, imagem e telecomunicações`,
+        tags: ["matematica", "fourier", "ondas", "sinais"],
+        disciplinaId: "matematica",
+      },
     ],
   },
 
@@ -195,7 +274,7 @@ export const CATALOGO_DISCIPLINAS: Disciplina[] = [
     id: "portugues",
     nome: "Português & Redação",
     icone: "🇧🇷",
-    descricao: "Sintaxe, crase, pontuação e técnicas estruturais de redação nota 1000.",
+    descricao: "Sintaxe, crase, pontuação, concordância e técnicas estruturais de redação nota 1000.",
     corGradiente: "from-amber-600 to-yellow-800",
     palavrasChave: [
       "portugues",
@@ -205,9 +284,11 @@ export const CATALOGO_DISCIPLINAS: Disciplina[] = [
       "crase",
       "sintaxe",
       "pontuacao",
+      "pontuação",
       "gramatica",
       "gramática",
       "concordancia",
+      "concordância",
     ],
     videos: [
       {
@@ -270,6 +351,36 @@ export const CATALOGO_DISCIPLINAS: Disciplina[] = [
         tags: ["portugues", "redacao", "enem", "dissertacao"],
         disciplinaId: "portugues",
       },
+      {
+        videoId: "06GYx8qoYqQ",
+        titulo: "Crase Facultativa e Casos Especiais",
+        canalNome: "Professor Noslen",
+        duracaoMin: 12,
+        duracaoIso: "PT12M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=480&h=270&fit=crop",
+        descricao: `Casos facultativos da crase (nomes femininos, até a, pronomes possessivos) e pegadinhas de prova.
+0:00 O que torna a crase facultativa
+03:15 Nomes próprios femininos
+06:40 Pronomes possessivos femininos
+09:50 A preposição 'até'`,
+        tags: ["portugues", "crase", "gramatica", "provas"],
+        disciplinaId: "portugues",
+      },
+      {
+        videoId: "YY8CqGBc9B8",
+        titulo: "Resolução Comentada de Exercícios de Gramática e Crase",
+        canalNome: "Professor Noslen",
+        duracaoMin: 15,
+        duracaoIso: "PT15M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=480&h=270&fit=crop",
+        descricao: `Prática direta com questões reais comentadas passo a passo para fixação absoluta.
+0:00 Introdução às questões
+03:30 Resolução de crase em frases complexas
+08:15 Identificação de armadilhas sintáticas
+12:00 Dicas finais de prova`,
+        tags: ["portugues", "exercicios", "gramatica", "enem"],
+        disciplinaId: "portugues",
+      },
     ],
   },
 
@@ -278,7 +389,7 @@ export const CATALOGO_DISCIPLINAS: Disciplina[] = [
     id: "fisica",
     nome: "Física",
     icone: "⚛️",
-    descricao: "Mecânica clássica, gravitação, termodinâmica, eletricidade e ondas.",
+    descricao: "Mecânica clássica, gravitação, termodinâmica, eletricidade e física moderna.",
     corGradiente: "from-purple-600 to-indigo-900",
     palavrasChave: [
       "fisica",
@@ -291,6 +402,7 @@ export const CATALOGO_DISCIPLINAS: Disciplina[] = [
       "ondas",
       "gravidade",
       "eletricidade",
+      "quantica",
     ],
     videos: [
       {
@@ -353,6 +465,36 @@ export const CATALOGO_DISCIPLINAS: Disciplina[] = [
         tags: ["fisica", "mecanica", "giroscopio", "momento angular"],
         disciplinaId: "fisica",
       },
+      {
+        videoId: "2OSrvzNW9FE",
+        titulo: "O Efeito Magnus e a Dinâmica dos Fluidos na Prática",
+        canalNome: "Veritasium",
+        duracaoMin: 15,
+        duracaoIso: "PT15M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=480&h=270&fit=crop",
+        descricao: `Lançando uma bola com rotação do topo de uma represa de 140 metros: física de fluidos em ação.
+0:00 O lançamento da bola da represa
+03:30 Como o spin cria diferença de pressão
+07:15 A Lei de Bernoulli e a força de sustentação
+11:20 Aplicações em aviação, futebol e navios eólicos`,
+        tags: ["fisica", "fluidos", "magnus", "bernoulli"],
+        disciplinaId: "fisica",
+      },
+      {
+        videoId: "Iuv6hY6zsd0",
+        titulo: "O Experimento Original da Dupla Fenda e a Física Quântica",
+        canalNome: "Veritasium",
+        duracaoMin: 18,
+        duracaoIso: "PT18M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?w=480&h=270&fit=crop",
+        descricao: `A experiência que provou a dualidade onda-partícula da luz e a natureza quântica da matéria.
+0:00 O experimento histórico de Thomas Young
+04:40 Padrões de interferência de ondas
+10:15 Disparando fótons individuais
+14:50 O colapso da função de onda e medição`,
+        tags: ["fisica", "quantica", "ondas", "luz"],
+        disciplinaId: "fisica",
+      },
     ],
   },
 
@@ -361,18 +503,23 @@ export const CATALOGO_DISCIPLINAS: Disciplina[] = [
     id: "quimica",
     nome: "Química",
     icone: "🧪",
-    descricao: "Tabela periódica, ligações químicas, estequiometria e cinética molecular.",
+    descricao: "Tabela periódica, ligações químicas, estequiometria, soluções e cinética molecular.",
     corGradiente: "from-teal-600 to-emerald-900",
     palavrasChave: [
       "quimica",
       "química",
       "tabela periodica",
+      "tabela periódica",
       "atomos",
       "átomos",
       "estequiometria",
       "ligacoes",
+      "ligações",
       "solucoes",
+      "soluções",
       "reacoes",
+      "reações",
+      "acidos",
     ],
     videos: [
       {
@@ -420,15 +567,45 @@ export const CATALOGO_DISCIPLINAS: Disciplina[] = [
         tags: ["quimica", "estequiometria", "mol", "reacoes"],
         disciplinaId: "quimica",
       },
+      {
+        videoId: "FSyAehMdpyI",
+        titulo: "O Núcleo Atômico, Prótons, Nêutrons e Isótopos",
+        canalNome: "CrashCourse",
+        duracaoMin: 12,
+        duracaoIso: "PT12M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=480&h=270&fit=crop",
+        descricao: `Estrutura atômica detalhada, forças nucleares fortes e número atômico.
+0:00 O modelo atômico moderno
+03:30 Massa atômica e isótopos
+07:15 A força nuclear forte que segura o núcleo
+10:00 Radioatividade e decaimento`,
+        tags: ["quimica", "atomos", "nucleo", "isotopos"],
+        disciplinaId: "quimica",
+      },
+      {
+        videoId: "ANi709MYnWg",
+        titulo: "Reações Ácido-Base em Solução e Escala de pH",
+        canalNome: "CrashCourse",
+        duracaoMin: 14,
+        duracaoIso: "PT14M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=480&h=270&fit=crop",
+        descricao: `Definição de Arrhenius e Brønsted-Lowry, cálculo de pH, neutralização e tampões.
+0:00 O que define um ácido e uma base
+03:50 Doação e aceitação de prótons H+
+07:30 A escala logarítmica de pH
+11:10 Neutralização e formação de sais`,
+        tags: ["quimica", "acidos", "bases", "ph", "solucoes"],
+        disciplinaId: "quimica",
+      },
     ],
   },
 
-  // 6. BIOLOGIA
+  // 6. BIOLOGIA & SAÚDE
   {
     id: "biologia",
     nome: "Biologia & Saúde",
     icone: "🧬",
-    descricao: "Genética, citologia celular, engenharia genética CRISPR e fisiologia.",
+    descricao: "Genética, evolução, citologia celular, engenharia genética CRISPR e ecologia.",
     corGradiente: "from-rose-500 to-pink-700",
     palavrasChave: [
       "biologia",
@@ -439,8 +616,10 @@ export const CATALOGO_DISCIPLINAS: Disciplina[] = [
       "células",
       "ecologia",
       "evolucao",
+      "evolução",
       "corpo",
       "crispr",
+      "respiracao",
     ],
     videos: [
       {
@@ -473,6 +652,66 @@ export const CATALOGO_DISCIPLINAS: Disciplina[] = [
         tags: ["biologia", "celulas", "fisiologia", "genetica"],
         disciplinaId: "biologia",
       },
+      {
+        videoId: "8kK2zwjRV0M",
+        titulo: "Estrutura do DNA e Replicação Celular",
+        canalNome: "CrashCourse",
+        duracaoMin: 15,
+        duracaoIso: "PT15M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=480&h=270&fit=crop",
+        descricao: `A dupla hélice de Watson e Crick, bases nitrogenadas e o maquinário enzimático de duplicação.
+0:00 As quatro bases do DNA (A, T, C, G)
+04:00 Replicação semiconservativa
+08:15 DNA polimerase e enzimas de cópia
+12:30 Síntese de proteínas e ribossomos`,
+        tags: ["biologia", "dna", "celulas", "genetica"],
+        disciplinaId: "biologia",
+      },
+      {
+        videoId: "aTftyFboC_M",
+        titulo: "Seleção Natural e Evolução Biológica",
+        canalNome: "CrashCourse",
+        duracaoMin: 14,
+        duracaoIso: "PT14M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=480&h=270&fit=crop",
+        descricao: `A teoria da evolução de Charles Darwin, pressão seletiva e adaptação das espécies ao ambiente.
+0:00 A viagem do Beagle e observações de Darwin
+03:50 Variação genética dentro das populações
+07:45 Pressão seletiva e reprodução diferencial
+11:20 Evidências fósseis e moleculares`,
+        tags: ["biologia", "evolucao", "darwin", "selecao natural"],
+        disciplinaId: "biologia",
+      },
+      {
+        videoId: "00jbG_cfGuQ",
+        titulo: "ATP, Respiração Celular e Bioenergética",
+        canalNome: "CrashCourse",
+        duracaoMin: 15,
+        duracaoIso: "PT15M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=480&h=270&fit=crop",
+        descricao: `Como as mitocôndrias convertem glicose em moeda de energia celular (ATP).
+0:00 O que é a molécula de ATP
+03:40 Glicólise no citoplasma
+07:30 O Ciclo de Krebs
+11:15 Cadeia transportadora de elétrons e fosforilação oxidativa`,
+        tags: ["biologia", "celulas", "respiracao", "atp", "mitocondria"],
+        disciplinaId: "biologia",
+      },
+      {
+        videoId: "LxgMdjyw8uw",
+        titulo: "Tecnologias Verdes e Conservação da Biodiversidade",
+        canalNome: "Kurzgesagt – In a Nutshell",
+        duracaoMin: 16,
+        duracaoIso: "PT16M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=480&h=270&fit=crop",
+        descricao: `Soluções biológicas, transição energética e recuperação de florestas e oceanos.
+0:00 O estado atual da biodiversidade
+04:10 Reflorestamento e corredores ecológicos
+08:30 Energia limpa e biotecnologia
+12:50 O papel da cooperação global`,
+        tags: ["biologia", "ecologia", "biodiversidade", "sustentabilidade"],
+        disciplinaId: "biologia",
+      },
     ],
   },
 
@@ -481,7 +720,7 @@ export const CATALOGO_DISCIPLINAS: Disciplina[] = [
     id: "historia",
     nome: "História",
     icone: "🏛️",
-    descricao: "Revoluções modernas, guerras mundiais, Iluminismo e História do Brasil.",
+    descricao: "Revoluções modernas, guerras mundiais, Iluminismo, Revolução Industrial e História do Brasil.",
     corGradiente: "from-orange-600 to-amber-800",
     palavrasChave: [
       "historia",
@@ -491,8 +730,10 @@ export const CATALOGO_DISCIPLINAS: Disciplina[] = [
       "revolução",
       "guerra",
       "imperio",
+      "império",
       "democracia",
       "iluminismo",
+      "industrial",
     ],
     videos: [
       {
@@ -570,6 +811,21 @@ export const CATALOGO_DISCIPLINAS: Disciplina[] = [
         tags: ["historia", "brasil", "independencia", "imperio"],
         disciplinaId: "historia",
       },
+      {
+        videoId: "zhL5DCizj5c",
+        titulo: "A Revolução Industrial: Carvão, Vapor e Transformação Social",
+        canalNome: "CrashCourse",
+        duracaoMin: 13,
+        duracaoIso: "PT13M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=480&h=270&fit=crop",
+        descricao: `A transição da manufatura artesanal para as máquinas térmicas, urbanização e novos regimes de trabalho.
+0:00 Por que a revolução começou na Grã-Bretanha
+04:00 O motor a vapor de James Watt
+08:15 Crescimento das cidades industriais
+11:40 Consequências sociais e leis trabalhistas`,
+        tags: ["historia", "revolucao industrial", "trabalho", "europa"],
+        disciplinaId: "historia",
+      },
     ],
   },
 
@@ -578,7 +834,7 @@ export const CATALOGO_DISCIPLINAS: Disciplina[] = [
     id: "ingles",
     nome: "Inglês",
     icone: "🇬🇧",
-    descricao: "Conversação prática, phrasal verbs, pronúncia e pensar em inglês.",
+    descricao: "Conversação prática, tempos verbais, phrasal verbs, pronúncia e pensar em inglês.",
     corGradiente: "from-blue-600 to-indigo-800",
     palavrasChave: [
       "ingles",
@@ -587,8 +843,11 @@ export const CATALOGO_DISCIPLINAS: Disciplina[] = [
       "idiomas",
       "grammar",
       "conversacao",
+      "conversação",
       "phrasal",
       "listening",
+      "pronuncia",
+      "verbos",
     ],
     videos: [
       {
@@ -636,6 +895,51 @@ export const CATALOGO_DISCIPLINAS: Disciplina[] = [
         tags: ["ingles", "inglês", "fluencia", "conversacao"],
         disciplinaId: "ingles",
       },
+      {
+        videoId: "jwmKjgwlMk8",
+        titulo: "Present Perfect vs Past Simple: Quando Usar Cada Tempo",
+        canalNome: "BBC Learning English",
+        duracaoMin: 8,
+        duracaoIso: "PT8M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=480&h=270&fit=crop",
+        descricao: `Aprenda de forma clara a distinguir ações finalizadas no passado daquelas com conexão no presente.
+0:00 A regra de ouro do tempo especificado vs não especificado
+02:30 'I have been' vs 'I went'
+05:00 Palavras-chave: ever, never, yesterday, in 2020
+07:15 Teste prático de fixação`,
+        tags: ["ingles", "grammar", "present perfect", "tempos verbais"],
+        disciplinaId: "ingles",
+      },
+      {
+        videoId: "XgLdOI6UsJY",
+        titulo: "The Grammar Gameshow: Desafios Práticos de Tempos Verbais",
+        canalNome: "BBC Learning English",
+        duracaoMin: 12,
+        duracaoIso: "PT12M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=480&h=270&fit=crop",
+        descricao: `O show interativo da BBC com perguntas sobre estruturas gramaticais desafiadoras.
+0:00 Apresentação dos competidores
+03:00 Rodada de preposições e tempos
+06:30 Armadilhas gramaticais comuns
+10:00 Rodada relâmpago de pronúncia`,
+        tags: ["ingles", "gameshow", "grammar", "listening"],
+        disciplinaId: "ingles",
+      },
+      {
+        videoId: "dn_F66mUkag",
+        titulo: "50 Palavras Mais Usadas no Inglês com Pronúncia e Exemplos",
+        canalNome: "Eat Sleep Dream English",
+        duracaoMin: 18,
+        duracaoIso: "PT18M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=480&h=270&fit=crop",
+        descricao: `Guia de pronúncia britânica e natural com as 50 palavras mais recorrentes do idioma falado.
+0:00 Introdução ao vocabulário de alta frequência
+04:00 Artigos, pronomes e conectores
+09:20 Verbos auxiliares e modais
+14:30 Exercício prático de escuta e repetição`,
+        tags: ["ingles", "vocabulario", "pronuncia", "fluencia"],
+        disciplinaId: "ingles",
+      },
     ],
   },
 
@@ -644,7 +948,7 @@ export const CATALOGO_DISCIPLINAS: Disciplina[] = [
     id: "filosofia",
     nome: "Filosofia & Sociologia",
     icone: "💭",
-    descricao: "Mito da caverna, ética de Aristóteles, teorias sociais de Marx, Weber e Durkheim.",
+    descricao: "Mito da caverna, ética de Aristóteles, utilitarismo, ceticismo cartesiano e sociologia clássica.",
     corGradiente: "from-violet-600 to-purple-800",
     palavrasChave: [
       "filosofia",
@@ -653,9 +957,14 @@ export const CATALOGO_DISCIPLINAS: Disciplina[] = [
       "ética",
       "pensamento",
       "politica",
+      "política",
       "platao",
+      "platão",
       "aristoteles",
+      "aristóteles",
       "sociedade",
+      "kant",
+      "descartes",
     ],
     videos: [
       {
@@ -703,6 +1012,51 @@ export const CATALOGO_DISCIPLINAS: Disciplina[] = [
         tags: ["sociologia", "weber", "marx", "durkheim"],
         disciplinaId: "filosofia",
       },
+      {
+        videoId: "-a739VjqdSI",
+        titulo: "Utilitarismo: Jeremy Bentham e John Stuart Mill",
+        canalNome: "CrashCourse",
+        duracaoMin: 11,
+        duracaoIso: "PT11M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=480&h=270&fit=crop",
+        descricao: `O princípio da maior felicidade para o maior número de pessoas e dilemas morais consequencialistas.
+0:00 O que é ética consequencialista
+03:15 O cálculo felicífico de Bentham
+06:40 Prazeres superiores vs inferiores de Mill
+09:20 O dilema do bonde (Trolley Problem)`,
+        tags: ["filosofia", "utilitarismo", "etica", "moral"],
+        disciplinaId: "filosofia",
+      },
+      {
+        videoId: "8bIys6JoEDw",
+        titulo: "Immanuel Kant e o Imperativo Categórico na Ética",
+        canalNome: "CrashCourse",
+        duracaoMin: 11,
+        duracaoIso: "PT11M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1461360370896-922624d12aa1?w=480&h=270&fit=crop",
+        descricao: `A ética deontológica do dever moral absoluto: agir apenas segundo máximas universalizáveis.
+0:00 Deontologia e o dever pelo dever
+03:30 A primeira formulação da lei universal
+06:15 A segunda formulação da humanidade como fim em si mesma
+09:00 Por que mentir viola a dignidade humana`,
+        tags: ["filosofia", "kant", "etica", "dever"],
+        disciplinaId: "filosofia",
+      },
+      {
+        videoId: "MLKrmw906TM",
+        titulo: "Ceticismo Cartesiano e René Descartes: Penso, Logo Existo",
+        canalNome: "CrashCourse",
+        duracaoMin: 11,
+        duracaoIso: "PT11M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=480&h=270&fit=crop",
+        descricao: `A dúvida metódica, a hipótese do gênio maligno e o fundamento indubitável da consciência (Cogito).
+0:00 A busca por certezas absolutas
+03:20 A falibilidade dos sentidos e o argumento do sonho
+06:40 O gênio maligno enganador
+09:15 'Cogito, ergo sum': a certeza da existência`,
+        tags: ["filosofia", "descartes", "epistemologia", "ceticismo"],
+        disciplinaId: "filosofia",
+      },
     ],
   },
 
@@ -711,7 +1065,7 @@ export const CATALOGO_DISCIPLINAS: Disciplina[] = [
     id: "tecnologia",
     nome: "Programação & Tech",
     icone: "💻",
-    descricao: "Algoritmos, estruturas de dados, React, TypeScript e engenharia de software.",
+    descricao: "Algoritmos, estruturas de dados, React, TypeScript, Docker, Python, Linux e engenharia web.",
     corGradiente: "from-slate-800 to-indigo-900",
     palavrasChave: [
       "programacao",
@@ -721,9 +1075,13 @@ export const CATALOGO_DISCIPLINAS: Disciplina[] = [
       "javascript",
       "typescript",
       "codigo",
+      "código",
       "dev",
       "software",
       "tecnologia",
+      "docker",
+      "python",
+      "linux",
     ],
     videos: [
       {
@@ -799,6 +1157,51 @@ export const CATALOGO_DISCIPLINAS: Disciplina[] = [
 02:20 ES6+ e a evolução da sintaxe
 03:30 JavaScript no backend com Node e Bun`,
         tags: ["javascript", "web", "programacao", "dev"],
+        disciplinaId: "tecnologia",
+      },
+      {
+        videoId: "Gjnup-PuquQ",
+        titulo: "Docker in 100 Seconds: Containers e Imagens",
+        canalNome: "Fireship",
+        duracaoMin: 5,
+        duracaoIso: "PT5M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1605379399642-870262d3d051?w=480&h=270&fit=crop",
+        descricao: `Como o Docker resolve o problema de 'na minha máquina funciona' com namespaces Linux e containers.
+0:00 O que é um container vs máquina virtual
+01:15 Criando um Dockerfile
+02:30 Construindo e rodando imagens
+03:45 Docker Compose e orquestração`,
+        tags: ["docker", "devops", "containers", "tecnologia"],
+        disciplinaId: "tecnologia",
+      },
+      {
+        videoId: "x7X9w_GIm1s",
+        titulo: "Python in 100 Seconds: A Linguagem Mais Popular",
+        canalNome: "Fireship",
+        duracaoMin: 5,
+        duracaoIso: "PT5M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=480&h=270&fit=crop",
+        descricao: `Por que o Python domina data science, automação e inteligência artificial.
+0:00 Sintaxe limpa e tipagem dinâmica
+01:15 Estruturas de dados embutidas
+02:30 Ecossistema para IA (NumPy, PyTorch)
+03:30 Casos de uso na indústria`,
+        tags: ["python", "programacao", "ia", "dev"],
+        disciplinaId: "tecnologia",
+      },
+      {
+        videoId: "rrB13utjYV4",
+        titulo: "Linux in 100 Seconds: O Núcleo do Mundo Conectado",
+        canalNome: "Fireship",
+        duracaoMin: 5,
+        duracaoIso: "PT5M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=480&h=270&fit=crop",
+        descricao: `A arquitetura do kernel Linux, distribuições, o terminal Bash e a nuvem.
+0:00 Linus Torvalds e a criação do Linux
+01:10 Arquitetura do kernel e tudo é um arquivo
+02:20 Principais distribuições (Ubuntu, Debian, Arch)
+03:30 O terminal e servidores de produção`,
+        tags: ["linux", "servidores", "terminal", "devops"],
         disciplinaId: "tecnologia",
       },
       {
