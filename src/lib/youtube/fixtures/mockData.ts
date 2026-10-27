@@ -147,16 +147,16 @@ export const MOCK_CANAIS: MockCanal[] = [
     categoria: "tecnologia",
     videos: [
       {
-        id: "bMknfKXIFA8", // React in 100 Seconds (ID Real)
+        id: "Tn6-PIqc4UM", // React in 100 Seconds (Fireship Oficial)
         titulo: "React in 100 Seconds: Conceitos Fundamentais e Hooks",
         descricao: `Tudo o que você precisa saber sobre o React e renderização declarativa.
 0:00 O que é o React e JSX
 01:10 Virtual DOM e Reatividade
 02:20 Componentes e State
 03:00 Ecossistema Moderno`,
-        duracaoIso: "PT10M12S",
-        duracaoSegundos: 612,
-        duracaoMin: 11,
+        duracaoIso: "PT5M",
+        duracaoSegundos: 300,
+        duracaoMin: 5,
         miniatura: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=480&h=270&fit=crop",
         publicadoEm: "2026-10-20T18:00:00Z",
         canalTitulo: "Fireship",
@@ -164,16 +164,16 @@ export const MOCK_CANAIS: MockCanal[] = [
         tags: ["react", "javascript", "typescript", "frontend", "programacao", "desenvolvimento", "web"],
       },
       {
-        id: "dcXqhqiZ2y4", // Next.js in 100 Seconds (ID Real)
-        titulo: "Next.js App Router e Server Components Explicados",
-        descricao: `Guia prático sobre SSR, SSG e App Router.
-0:00 O que mudou no Next.js
-02:00 Server Components vs Client
-05:15 Roteamento Dinâmico e Cache
-08:30 Deploy e Otimização`,
-        duracaoIso: "PT12M30S",
-        duracaoSegundos: 750,
-        duracaoMin: 13,
+        id: "zQnBQ4tB3ZA", // TypeScript in 100 Seconds (Fireship Oficial)
+        titulo: "TypeScript in 100 Seconds: Tipagem e Produtividade",
+        descricao: `Como o TypeScript adiciona tipos estáticos ao JavaScript para evitar bugs em produção.
+0:00 Por que o TypeScript foi criado
+01:15 Interfaces, Types e Genéricos
+02:30 Compilação e checagem em tempo real
+03:45 Configuração do tsconfig.json`,
+        duracaoIso: "PT5M",
+        duracaoSegundos: 300,
+        duracaoMin: 5,
         miniatura: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=480&h=270&fit=crop",
         publicadoEm: "2026-10-12T14:00:00Z",
         canalTitulo: "Fireship",

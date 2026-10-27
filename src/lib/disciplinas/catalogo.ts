@@ -28,16 +28,29 @@ export const CATALOGO_DISCIPLINAS: Disciplina[] = [
     icone: "🌍",
     descricao: "Cartografia, placas tectônicas, relevo, biomas terrestres e dinâmica geopolítica.",
     corGradiente: "from-emerald-600 to-teal-800",
-    palavrasChave: ["geografia", "geopolitica", "relevo", "clima", "biomas", "mapa", "planeta", "continentes", "terra", "cartografia", "tectonica"],
+    palavrasChave: [
+      "geografia",
+      "geopolitica",
+      "relevo",
+      "clima",
+      "biomas",
+      "mapa",
+      "planeta",
+      "continentes",
+      "terra",
+      "cartografia",
+      "tectonica",
+      "placas",
+    ],
     videos: [
       {
-        videoId: "kJQP7kiw5Fk",
-        titulo: "Como as Placas Tectônicas Moldaram a Geografia da Terra",
-        canalNome: "Geografia Visual",
+        videoId: "DX19JF7R13g",
+        titulo: "Teoria da Deriva Continental e Tectônica de Placas",
+        canalNome: "GeoIlustrada",
         duracaoMin: 14,
         duracaoIso: "PT14M",
         miniaturaUrl: "https://images.unsplash.com/photo-1524661135-423995f22d0b?w=480&h=270&fit=crop",
-        descricao: `Entenda a deriva continental, zonas de subducção e formação de montanhas.
+        descricao: `Entenda a deriva continental, a formação da Pangeia e as zonas de subducção.
 0:00 A Teoria da Deriva Continental
 03:10 Movimento das Placas Tectônicas
 07:45 Terremotos e Círculo de Fogo
@@ -46,78 +59,33 @@ export const CATALOGO_DISCIPLINAS: Disciplina[] = [
         disciplinaId: "geografia",
       },
       {
-        videoId: "WfGMYdalClU",
-        titulo: "Climas do Mundo e Biomas Globais Explicados",
-        canalNome: "Geografia em Ação",
+        videoId: "wbR-5mHI6bo",
+        titulo: "Mudanças Climáticas e Dinâmica dos Biomas Globais",
+        canalNome: "Kurzgesagt – In a Nutshell",
         duracaoMin: 16,
         duracaoIso: "PT16M",
         miniaturaUrl: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=480&h=270&fit=crop",
-        descricao: `Classificação climática, correntes marítimas e vegetação global.
+        descricao: `Classificação climática, aquecimento global e o impacto nos ecossistemas do planeta.
 0:00 Fatores que determinam o clima
 04:15 Zonas Tropicais, Temperadas e Polares
 09:30 Biomas e Biodiversidade
-13:40 Mudanças Climáticas Atuais`,
+13:40 O Futuro Climático da Terra`,
         tags: ["geografia", "clima", "biomas", "vegetacao"],
         disciplinaId: "geografia",
       },
       {
-        videoId: "6uXGz8F1xY4",
-        titulo: "Geopolítica Mundial: Recursos Hídricos e Fronteiras Estratégicas",
-        canalNome: "Mundo em Mapas",
+        videoId: "kIID5FDi2JQ",
+        titulo: "Cartografia: Por Que Todos os Mapas Mundi Planos Estão Distorcidos",
+        canalNome: "Vox",
         duracaoMin: 12,
         duracaoIso: "PT12M",
         miniaturaUrl: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=480&h=270&fit=crop",
-        descricao: `Como os rios e relevos definiram fronteiras e rotas comerciais.
-0:00 Geografia como destino estratégico
-03:00 Bacias hidrográficas internacionais
-07:15 Rotas marítimas e Estreitos
-10:10 Geopolítica do Século XXI`,
-        tags: ["geografia", "geopolitica", "mapas", "fronteiras"],
-        disciplinaId: "geografia",
-      },
-      {
-        videoId: "jU3vWqN1uR8",
-        titulo: "Cartografia Moderna: Projeções Cartográficas e Sensoriamento Remoto",
-        canalNome: "Geografia Moderna",
-        duracaoMin: 18,
-        duracaoIso: "PT18M",
-        miniaturaUrl: "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=480&h=270&fit=crop",
-        descricao: `Projeção de Mercator vs Peters, imagens de satélite e sistemas GIS.
-0:00 Por que todos os mapas planos mentem
-04:30 Mercator vs Projeções Equivalentes
-09:15 Coordenadas Geográficas e Fusos Horários
-14:00 Sensoriamento Remoto e Satélites`,
-        tags: ["geografia", "cartografia", "mapas", "fusos"],
-        disciplinaId: "geografia",
-      },
-      {
-        videoId: "1L0T7Fm5n1Q",
-        titulo: "Urbanização e Megacidades: A Dinâmica do Espaço Urbano",
-        canalNome: "Geografia Humana",
-        duracaoMin: 22,
-        duracaoIso: "PT22M",
-        miniaturaUrl: "https://images.unsplash.com/photo-1477959858617-67f30bc75b82?w=480&h=270&fit=crop",
-        descricao: `Êxodo rural, conurbação, metropolização e gentrificação nas grandes cidades.
-0:00 O crescimento das cidades pós-revolução industrial
-05:10 Conurbação e Regiões Metropolitanas
-11:20 Problemas socioambientais urbanos
-17:40 Cidades Inteligentes e Planejamento`,
-        tags: ["geografia", "urbanizacao", "cidades", "demografia"],
-        disciplinaId: "geografia",
-      },
-      {
-        videoId: "d6yV3i_4j1g",
-        titulo: "Relevo Brasileiro e Bacias Hidrográficas do Brasil",
-        canalNome: "Geografia do Brasil",
-        duracaoMin: 15,
-        duracaoIso: "PT15M",
-        miniaturaUrl: "https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?w=480&h=270&fit=crop",
-        descricao: `Planalto Central, Depressões e Bacias Amazônica, Platina e São Francisco.
-0:00 Estrutura geológica do Brasil
-03:40 Classificação do Relevo (Jurandyr Ross)
-08:20 Bacias Hidrográficas principais
-12:10 Aquíferos Guarani e Alter do Chão`,
-        tags: ["geografia", "brasil", "relevo", "rios", "hidrografia"],
+        descricao: `A Projeção de Mercator vs Gall-Peters e o desafio geométrico de representar uma esfera em 2D.
+0:00 O problema da projeção de uma esfera
+03:00 A Projeção de Mercator e sua finalidade náutica
+06:30 Distorções territoriais da Groenlândia e África
+09:40 Projeções modernas e sensoriamento remoto`,
+        tags: ["geografia", "cartografia", "mapas", "geopolitica"],
         disciplinaId: "geografia",
       },
     ],
@@ -128,68 +96,95 @@ export const CATALOGO_DISCIPLINAS: Disciplina[] = [
     id: "matematica",
     nome: "Matemática",
     icone: "📐",
-    descricao: "Álgebra, geometria, funções, trigonometria e raciocínio lógico.",
+    descricao: "Cálculo, álgebra linear, probabilidade e raciocínio geométrico intuitivo.",
     corGradiente: "from-blue-600 to-cyan-700",
-    palavrasChave: ["matematica", "matemática", "algebra", "álgebra", "geometria", "funcoes", "funções", "calculo", "cálculo", "equacao", "trigonometria"],
+    palavrasChave: [
+      "matematica",
+      "matemática",
+      "algebra",
+      "álgebra",
+      "geometria",
+      "funcoes",
+      "funções",
+      "calculo",
+      "cálculo",
+      "derivada",
+      "vetores",
+    ],
     videos: [
       {
-        videoId: "bMknfKXIFA8",
-        titulo: "Funções de 1º e 2º Grau: Gráficos, Vértice e Raízes sem Decoreba",
-        canalNome: "Matemática Descomplicada",
+        videoId: "WUvTyaaNkzM",
+        titulo: "A Essência do Cálculo: A Visão Geométrica de Derivadas e Integrais",
+        canalNome: "3Blue1Brown",
         duracaoMin: 18,
         duracaoIso: "PT18M",
         miniaturaUrl: "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=480&h=270&fit=crop",
-        descricao: `Aprenda o comportamento visual das funções afins e quadráticas.
-0:00 O que é uma função no plano cartesiano
-04:15 Função Afim e Taxa de Variação
-09:30 Função Quadrática e Parábolas
-14:10 Bhaskara e Vértice da Parábola`,
-        tags: ["matematica", "funcoes", "algebra", "graficos"],
+        descricao: `Uma introdução visual e intuitiva aos fundamentos do cálculo diferencial e integral.
+0:00 O problema da área sob a curva
+04:15 Taxa de variação instantânea e derivadas
+09:30 O Teorema Fundamental do Cálculo
+14:10 Por que o cálculo é a linguagem da física`,
+        tags: ["matematica", "calculo", "derivadas", "geometria"],
         disciplinaId: "matematica",
       },
       {
-        videoId: "7Tf_X_N8ZlA",
-        titulo: "Geometria Espacial: Volumes e Áreas de Prismas, Cilindros e Esferas",
-        canalNome: "Matemática Visual",
-        duracaoMin: 20,
-        duracaoIso: "PT20M",
+        videoId: "9vKqVkMQHKk",
+        titulo: "O Paradoxo da Derivada e a Reta Tangente",
+        canalNome: "3Blue1Brown",
+        duracaoMin: 16,
+        duracaoIso: "PT16M",
         miniaturaUrl: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=480&h=270&fit=crop",
-        descricao: `Cálculo de volume e área total dos sólidos geométricos fundamentais.
-0:00 A transição do plano 2D para o espaço 3D
-04:30 Prismas e Paralelepípedos
-10:15 Cilindros e Cones
-15:50 Esferas e Princípio de Cavalieri`,
-        tags: ["matematica", "geometria", "volume", "solidos"],
+        descricao: `Como calcular a velocidade em um instante de tempo exato sem dividir por zero.
+0:00 Velocidade instantânea vs média
+04:30 O conceito de limite infinitesimal
+10:15 A inclinação da reta tangente
+14:00 Aplicações no mundo real`,
+        tags: ["matematica", "calculo", "limites", "derivadas"],
         disciplinaId: "matematica",
       },
       {
-        videoId: "dcXqhqiZ2y4",
-        titulo: "Probabilidade e Análise Combinatória: Permutação vs Combinação",
-        canalNome: "Raciocínio Matemático",
+        videoId: "fNk_zzaMoSs",
+        titulo: "Vetores e Espaço Vetorial: O Que Realmente É um Vetor?",
+        canalNome: "3Blue1Brown",
         duracaoMin: 15,
         duracaoIso: "PT15M",
         miniaturaUrl: "https://images.unsplash.com/photo-1596495578065-6e0763fa1178?w=480&h=270&fit=crop",
-        descricao: `Nunca mais confunda arranjo, combinação e permutação com este método.
-0:00 O Princípio Fundamental da Contagem
-03:50 Permutação simples e com repetição
-08:10 Combinações e quando a ordem não importa
-12:00 Cálculo de Probabilidades`,
-        tags: ["matematica", "probabilidade", "combinatoria", "estatistica"],
+        descricao: `Perspectiva física, computacional e matemática de vetores e coordenadas.
+0:00 A tríplice perspectiva dos vetores
+03:50 Coordenadas cartesianas no plano
+08:10 Adição e multiplicação por escalar
+12:00 Vetores como setas no espaço`,
+        tags: ["matematica", "algebra linear", "vetores", "geometria"],
         disciplinaId: "matematica",
       },
       {
-        videoId: "Vd9Z7g2B-3g",
-        titulo: "Trigonometria no Triângulo Retângulo e Círculo Trigonométrico",
-        canalNome: "Matemática Pura",
-        duracaoMin: 22,
-        duracaoIso: "PT22M",
+        videoId: "kYB8IZa5AuE",
+        titulo: "Transformações Lineares e Matrizes Explicadas Visualmente",
+        canalNome: "3Blue1Brown",
+        duracaoMin: 17,
+        duracaoIso: "PT17M",
         miniaturaUrl: "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=480&h=270&fit=crop",
-        descricao: `Seno, Cosseno, Tangente e a magia do ciclo trigonométrico.
-0:00 Razões trigonométricas no triângulo retângulo
-05:30 Ângulos notáveis (30°, 45°, 60°)
-11:20 O Círculo Trigonométrico de raio 1
-17:00 Relação Fundamental da Trigonometria`,
-        tags: ["matematica", "trigonometria", "seno", "cosseno"],
+        descricao: `Como matrizes transformam o espaço vetorial através de rotações e escalas.
+0:00 O que é uma transformação linear
+04:40 De onde vêm as colunas de uma matriz
+09:20 Determinantes e distorção de área
+14:15 Composição de matrizes`,
+        tags: ["matematica", "matrizes", "algebra linear", "transformacoes"],
+        disciplinaId: "matematica",
+      },
+      {
+        videoId: "HZGCoVF3YvM",
+        titulo: "Teorema de Bayes: A Geometria de Mudar Nossas Crenças",
+        canalNome: "3Blue1Brown",
+        duracaoMin: 19,
+        duracaoIso: "PT19M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=480&h=270&fit=crop",
+        descricao: `Probabilidade condicional, testes médicos e atualização de probabilidades com evidências.
+0:00 O paradoxo do falso positivo
+05:10 Visualizando probabilidade com áreas retangulares
+11:30 A fórmula de Bayes explicada
+16:00 Aplicações em Inteligência Artificial`,
+        tags: ["matematica", "probabilidade", "estatistica", "bayes"],
         disciplinaId: "matematica",
       },
     ],
@@ -200,68 +195,79 @@ export const CATALOGO_DISCIPLINAS: Disciplina[] = [
     id: "portugues",
     nome: "Português & Redação",
     icone: "🇧🇷",
-    descricao: "Sintaxe, crase, pontuação, concordância e técnicas de redação nota 1000.",
+    descricao: "Sintaxe, crase, pontuação e técnicas estruturais de redação nota 1000.",
     corGradiente: "from-amber-600 to-yellow-800",
-    palavrasChave: ["portugues", "português", "redacao", "redação", "crase", "sintaxe", "pontuacao", "gramatica", "gramática", "concordancia", "interpretacao"],
+    palavrasChave: [
+      "portugues",
+      "português",
+      "redacao",
+      "redação",
+      "crase",
+      "sintaxe",
+      "pontuacao",
+      "gramatica",
+      "gramática",
+      "concordancia",
+    ],
     videos: [
       {
-        videoId: "1L0T7Fm5n1Q",
-        titulo: "Domine a Crase de Uma Vez por Todas com 4 Regras Simples",
-        canalNome: "Português com Clareza",
+        videoId: "yUpRa62vcSI",
+        titulo: "Crase Sem Segredo: O Concerto da Crase e Regras Definitivas",
+        canalNome: "Professor Noslen",
         duracaoMin: 14,
         duracaoIso: "PT14M",
         miniaturaUrl: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=480&h=270&fit=crop",
-        descricao: `Quando usar, quando nunca usar e os casos facultativos da crase.
-0:00 O que é a crase (fusão a + a)
-03:00 Troca por palavra masculina
-06:40 Casos proibidos (antes de verbo, palavras masculinas)
-10:30 Casos facultativos e macetes`,
+        descricao: `Quando usar crase, casos proibidos e o macete da troca pela palavra masculina.
+0:00 A fusão da preposição 'a' com o artigo 'a'
+03:00 A regra da troca por palavra masculina
+06:40 Casos proibidos (antes de verbo e masculinos)
+10:30 Casos facultativos memoráveis`,
         tags: ["portugues", "crase", "gramatica", "redacao"],
         disciplinaId: "portugues",
       },
       {
-        videoId: "WfGMYdalClU",
-        titulo: "Pontuação e Uso da Vírgula sem Erros em Redações",
-        canalNome: "Gramática Prática",
-        duracaoMin: 16,
-        duracaoIso: "PT16M",
+        videoId: "-uUtlvKifiY",
+        titulo: "O Uso da Vírgula e Pontuação Correta na Redação",
+        canalNome: "Professor Noslen",
+        duracaoMin: 15,
+        duracaoIso: "PT15M",
         miniaturaUrl: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=480&h=270&fit=crop",
-        descricao: `Por que vírgula não é pausa para respiração: aprenda a regra sintática.
-0:00 O mito da pausa para respirar
+        descricao: `Por que a vírgula não é pausa para respiração: regras sintáticas essenciais.
+0:00 O mito da respiração
 04:10 Nunca separe sujeito de predicado
-08:20 Vírgula com adjuntos adverbiais deslocados
-12:50 Orações coordenadas e subordinadas`,
+08:20 Adjuntos adverbiais deslocados
+12:30 Orações coordenadas e subordinadas`,
         tags: ["portugues", "virgula", "pontuacao", "sintaxe"],
         disciplinaId: "portugues",
       },
       {
-        videoId: "kJQP7kiw5Fk",
-        titulo: "Estrutura Perfeita de Redação Dissertativo-Argumentativa",
-        canalNome: "Redação Nota 1000",
-        duracaoMin: 22,
-        duracaoIso: "PT22M",
-        miniaturaUrl: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=480&h=270&fit=crop",
-        descricao: `Introdução com tese, desenvolvimento por causas/consequências e proposta de intervenção.
-0:00 O esqueleto da dissertação argumentativa
-05:10 Introdução em 3 partes
-11:00 D1 e D2: Repertório sociocultural e argumentação
-17:30 Proposta de Intervenção com os 5 elementos`,
-        tags: ["portugues", "redacao", "enem", "dissertacao", "argumentacao"],
+        videoId: "rEi8LPMDL4Q",
+        titulo: "Concordância Verbal Descomplicada",
+        canalNome: "Professor Noslen",
+        duracaoMin: 16,
+        duracaoIso: "PT16M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=480&h=270&fit=crop",
+        descricao: `Verbo haver com sentido de existir, sujeito composto e casos especiais de concordância.
+0:00 Princípio geral da concordância
+03:30 Verbos impessoais (haver e fazer)
+07:45 Voz passiva sintética e partícula 'se'
+12:00 Sujeito partitivo e coletivo`,
+        tags: ["portugues", "concordancia", "gramatica", "sintaxe"],
         disciplinaId: "portugues",
       },
       {
-        videoId: "6uXGz8F1xY4",
-        titulo: "Concordância Verbal e Nominal: As Armadilhas Mais Comuns",
-        canalNome: "Português em Foco",
-        duracaoMin: 15,
-        duracaoIso: "PT15M",
-        miniaturaUrl: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=480&h=270&fit=crop",
-        descricao: `Verbo haver com sentido de existir, sujeito composto e pronomes indefinidos.
-0:00 Regra geral de concordância
-03:30 O verbo haver e fazer indicando tempo
-07:45 Concordância com voz passiva sintética (vende-se casas?)
-11:50 Casos especiais de concordância nominal`,
-        tags: ["portugues", "concordancia", "gramatica", "sintaxe"],
+        videoId: "m-LyXHcALuA",
+        titulo: "Passo a Passo da Redação Nota 1000 no ENEM",
+        canalNome: "Profinho",
+        duracaoMin: 22,
+        duracaoIso: "PT22M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=480&h=270&fit=crop",
+        descricao: `Estrutura de 4 parágrafos: introdução com tese, repertório sociocultural e intervenção com os 5 elementos.
+0:00 O esqueleto nota 1000 da dissertação
+05:10 Introdução em 3 partes e tese clara
+11:00 Desenvolvimentos D1 e D2 com repertório
+17:30 Proposta de Intervenção com os 5 elementos`,
+        tags: ["portugues", "redacao", "enem", "dissertacao"],
         disciplinaId: "portugues",
       },
     ],
@@ -272,68 +278,79 @@ export const CATALOGO_DISCIPLINAS: Disciplina[] = [
     id: "fisica",
     nome: "Física",
     icone: "⚛️",
-    descricao: "Mecânica clássica, leis de Newton, termodinâmica, óptica e ondas.",
+    descricao: "Mecânica clássica, gravitação, termodinâmica, eletricidade e ondas.",
     corGradiente: "from-purple-600 to-indigo-900",
-    palavrasChave: ["fisica", "física", "mecanica", "mecânica", "newton", "energia", "termodinamica", "ondas", "optica", "gravidade"],
+    palavrasChave: [
+      "fisica",
+      "física",
+      "mecanica",
+      "mecânica",
+      "newton",
+      "energia",
+      "termodinamica",
+      "ondas",
+      "gravidade",
+      "eletricidade",
+    ],
     videos: [
       {
-        videoId: "7Tf_X_N8ZlA",
-        titulo: "As Três Leis de Newton e a Mecânica do Universo",
-        canalNome: "Física em Minutos",
-        duracaoMin: 15,
-        duracaoIso: "PT15M",
+        videoId: "XRr1kaXKBsU",
+        titulo: "Por Que a Gravidade NÃO É Uma Força (Relatividade Geral)",
+        canalNome: "Veritasium",
+        duracaoMin: 17,
+        duracaoIso: "PT17M",
         miniaturaUrl: "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?w=480&h=270&fit=crop",
-        descricao: `Inércia, força e ação e reação explicadas com experimentos reais.
-0:00 Introdução à Mecânica Clássica
-03:20 Primeira Lei: O Princípio da Inércia
-07:40 Segunda Lei: F = m * a
-11:50 Terceira Lei: Ação e Reação`,
-        tags: ["fisica", "mecanica", "newton", "forca"],
+        descricao: `Como Einstein reformulou a gravidade de Newton: curvatura do espaço-tempo e geodésicas.
+0:00 O equívoco de Newton sobre atração
+04:20 O princípio da equivalência no elevador
+09:10 Geodésicas e espaço-tempo curvo
+14:00 Por que você está acelerando para cima agora`,
+        tags: ["fisica", "gravidade", "relatividade", "einstein"],
         disciplinaId: "fisica",
       },
       {
-        videoId: "bMknfKXIFA8",
-        titulo: "Termodinâmica: Entropia, Calor e a Seta do Tempo",
-        canalNome: "Ciência Todo Dia",
+        videoId: "DxL2HoqLbyA",
+        titulo: "O Conceito Mais Mal Compreendido da Física: Entropia",
+        canalNome: "Veritasium",
         duracaoMin: 18,
         duracaoIso: "PT18M",
         miniaturaUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=480&h=270&fit=crop",
-        descricao: `Por que o tempo anda para frente? Entenda a Segunda Lei da Termodinâmica.
-0:00 O que é Calor e Temperatura
-04:10 Primeira Lei: Conservação da Energia
-09:20 Segunda Lei e Entropia
-14:00 Máquinas Térmicas e Ciclo de Carnot`,
-        tags: ["fisica", "termodinamica", "entropia", "calor"],
+        descricao: `Por que o tempo segue uma direção? A Segunda Lei da Termodinâmica e microestados estatísticos.
+0:00 A seta do tempo e calor
+04:10 Entropia não é simplesmente 'desordem'
+09:20 Microestados e probabilidades de Boltzmann
+14:30 A morte térmica do Universo`,
+        tags: ["fisica", "termodinamica", "entropia", "energia"],
         disciplinaId: "fisica",
       },
       {
-        videoId: "dcXqhqiZ2y4",
-        titulo: "Ondulatória e Som: Frequência, Amplitude e Efeito Doppler",
-        canalNome: "Física Experimental",
+        videoId: "bHIhgxav9LY",
+        titulo: "O Maior Equívoco Sobre Eletricidade e Circuitos",
+        canalNome: "Veritasium",
         duracaoMin: 16,
         duracaoIso: "PT16M",
-        miniaturaUrl: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=480&h=270&fit=crop",
-        descricao: `Ondas transversais, longitudinais, ressonância e o Efeito Doppler.
-0:00 O que é uma onda e transporte de energia
-04:15 Equação Fundamental: v = lambda * f
-09:10 Ressonância e interferência
-13:30 O Efeito Doppler no som e na luz`,
-        tags: ["fisica", "ondas", "som", "doppler"],
+        miniaturaUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=480&h=270&fit=crop",
+        descricao: `A energia elétrica não viaja dentro dos fios, mas sim nos campos eletromagnéticos externos!
+0:00 A velocidade dos elétrons vs da luz
+04:30 O experimento mental do circuito de 1 segundo-luz
+09:15 O Vetor de Poynting e fluxo de energia
+13:30 Como a física dos circuitos realmente opera`,
+        tags: ["fisica", "eletricidade", "circuitos", "eletromagnetismo"],
         disciplinaId: "fisica",
       },
       {
-        videoId: "kJQP7kiw5Fk",
-        titulo: "Eletricidade e Circuitos: Lei de Ohm, Tensão, Corrente e Potência",
-        canalNome: "Eletrofísica",
-        duracaoMin: 20,
-        duracaoIso: "PT20M",
-        miniaturaUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=480&h=270&fit=crop",
-        descricao: `Cálculo de resistência, circuitos série e paralelo e consumo de energia.
-0:00 O que são elétrons em movimento e ddp
-04:40 Primeira Lei de Ohm (U = R * i)
-10:15 Circuitos em Série vs Paralelo
-15:30 Potência Elétrica e gasto em kWh`,
-        tags: ["fisica", "eletricidade", "ohm", "circuitos"],
+        videoId: "GeyDf4ooPdo",
+        titulo: "Roda Antigravidade? Momento Angular e Giroscópios",
+        canalNome: "Veritasium",
+        duracaoMin: 12,
+        duracaoIso: "PT12M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?w=480&h=270&fit=crop",
+        descricao: `Por que uma roda pesada girando parece não pesar nada ao ser erguida por um braço?
+0:00 A demonstração surpreendente da roda
+03:10 Momento angular e precessão giroscópica
+07:20 Conservação do momento e torque
+10:30 Aplicações em satélites e naves espaciais`,
+        tags: ["fisica", "mecanica", "giroscopio", "momento angular"],
         disciplinaId: "fisica",
       },
     ],
@@ -344,68 +361,63 @@ export const CATALOGO_DISCIPLINAS: Disciplina[] = [
     id: "quimica",
     nome: "Química",
     icone: "🧪",
-    descricao: "Tabela periódica, ligações químicas, estequiometria, soluções e termoquímica.",
+    descricao: "Tabela periódica, ligações químicas, estequiometria e cinética molecular.",
     corGradiente: "from-teal-600 to-emerald-900",
-    palavrasChave: ["quimica", "química", "tabela periodica", "atomos", "átomos", "estequiometria", "ligacoes", "solucoes", "reacoes"],
+    palavrasChave: [
+      "quimica",
+      "química",
+      "tabela periodica",
+      "atomos",
+      "átomos",
+      "estequiometria",
+      "ligacoes",
+      "solucoes",
+      "reacoes",
+    ],
     videos: [
       {
-        videoId: "6uXGz8F1xY4",
-        titulo: "Tabela Periódica: Famílias, Períodos e Propriedades Periódicas",
-        canalNome: "Química Total",
-        duracaoMin: 16,
-        duracaoIso: "PT16M",
+        videoId: "0RRVV4Diomg",
+        titulo: "A Tabela Periódica: Como a Natureza Organiza a Matéria",
+        canalNome: "CrashCourse",
+        duracaoMin: 12,
+        duracaoIso: "PT12M",
         miniaturaUrl: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=480&h=270&fit=crop",
-        descricao: `Eletronegatividade, raio atômico, energia de ionização e afinidade eletrônica.
-0:00 A organização genial de Mendeleev
-04:10 Metais, Ametais e Gases Nobres
-08:45 Raio Atômico e Eletronegatividade
-13:00 Como usar a tabela para prever ligações`,
-        tags: ["quimica", "tabela periodica", "atomos", "eletronegatividade"],
+        descricao: `A genialidade de Mendeleev, famílias periódicas, eletronegatividade e raio atômico.
+0:00 A história da tabela de Mendeleev
+03:10 Metais, ametais e nobres
+06:45 Propriedades periódicas em ação
+10:00 Previsão de novos elementos químicos`,
+        tags: ["quimica", "tabela periodica", "atomos", "elementos"],
         disciplinaId: "quimica",
       },
       {
-        videoId: "WfGMYdalClU",
-        titulo: "Ligações Químicas: Iônica, Covalente e Metálica na Prática",
-        canalNome: "Química Interativa",
-        duracaoMin: 18,
-        duracaoIso: "PT18M",
+        videoId: "QXT4OVM4vXI",
+        titulo: "Tipos de Ligações Químicas: Iônica, Covalente e Metálica",
+        canalNome: "CrashCourse",
+        duracaoMin: 11,
+        duracaoIso: "PT11M",
         miniaturaUrl: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=480&h=270&fit=crop",
-        descricao: `Regra do octeto, compartilhamento de elétrons e forças intermoleculares.
-0:00 A estabilidade dos gases nobres e regra do octeto
-04:30 Ligação Iônica (metais + ametais)
-09:40 Ligação Covalente simples, dupla e tripla
-14:15 Ligação Metálica e forças de Van der Waals`,
+        descricao: `Como os elétrons de valência unem os átomos: transferência vs compartilhamento.
+0:00 Por que átomos formam ligações
+03:20 Ligação iônica e transferência de carga
+06:15 Ligação covalente e moléculas estáveis
+09:00 Ligação metálica e o mar de elétrons`,
         tags: ["quimica", "ligacoes", "ionica", "covalente"],
         disciplinaId: "quimica",
       },
       {
-        videoId: "bMknfKXIFA8",
-        titulo: "Cálculo Estequiométrico: Passo a Passo Sem Errar",
-        canalNome: "Química em Minutos",
-        duracaoMin: 22,
-        duracaoIso: "PT22M",
+        videoId: "UL1jmJaUkaQ",
+        titulo: "Estequiometria: O Cálculo Químico na Prática",
+        canalNome: "CrashCourse",
+        duracaoMin: 13,
+        duracaoIso: "PT13M",
         miniaturaUrl: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=480&h=270&fit=crop",
-        descricao: `Balanceamento de equações, mol, massa molar, rendimento e pureza.
-0:00 A Lei de Lavoisier: na natureza nada se perde
-05:10 Balanceamento pelo método das tentativas
-11:30 A ponte do Mol e a Constante de Avogadro
-17:20 Reagente Limitante e em Excesso`,
+        descricao: `Balanceamento, constante de Avogadro, massa molar e proporções sem complicação.
+0:00 O que é estequiometria e a Lei de Lavoisier
+04:00 A ponte do Mol e Número de Avogadro
+08:20 Relações de massa em reações químicas
+11:15 Rendimento e reagente limitante`,
         tags: ["quimica", "estequiometria", "mol", "reacoes"],
-        disciplinaId: "quimica",
-      },
-      {
-        videoId: "7Tf_X_N8ZlA",
-        titulo: "pH, Soluções e Ácidos e Bases de Arrhenius a Bronsted",
-        canalNome: "Química Viva",
-        duracaoMin: 15,
-        duracaoIso: "PT15M",
-        miniaturaUrl: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=480&h=270&fit=crop",
-        descricao: `Escala de pH e pOH, concentração em g/L e molaridade.
-0:00 Definição de Ácidos e Bases
-03:50 O que significa a escala logarítmica de pH
-08:20 Indicadores de pH e neutralização
-12:00 Concentração Molar e Diluição`,
-        tags: ["quimica", "ph", "acidos", "bases", "solucoes"],
         disciplinaId: "quimica",
       },
     ],
@@ -416,68 +428,49 @@ export const CATALOGO_DISCIPLINAS: Disciplina[] = [
     id: "biologia",
     nome: "Biologia & Saúde",
     icone: "🧬",
-    descricao: "Genética mendeliana, citologia, ecologia, evolução e fisiologia humana.",
+    descricao: "Genética, citologia celular, engenharia genética CRISPR e fisiologia.",
     corGradiente: "from-rose-500 to-pink-700",
-    palavrasChave: ["biologia", "genetica", "genética", "dna", "celulas", "células", "ecologia", "evolucao", "corpo", "fisiologia"],
+    palavrasChave: [
+      "biologia",
+      "genetica",
+      "genética",
+      "dna",
+      "celulas",
+      "células",
+      "ecologia",
+      "evolucao",
+      "corpo",
+      "crispr",
+    ],
     videos: [
       {
-        videoId: "WfGMYdalClU",
-        titulo: "Como o Cérebro Cria Memórias e Aprende Novas Habilidades",
-        canalNome: "Neurociência Prática",
+        videoId: "jAhjPd4uNFY",
+        titulo: "Engenharia Genética e CRISPR: O Futuro do DNA e da Medicina",
+        canalNome: "Kurzgesagt – In a Nutshell",
         duracaoMin: 16,
         duracaoIso: "PT16M",
-        miniaturaUrl: "https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=480&h=270&fit=crop",
-        descricao: `Neuroplasticidade, sinapses e a ciência da repetição espaçada.
-0:00 Como os neurônios se comunicam
-04:15 Plasticidade sináptica e aprendizado
-08:50 Sono e consolidação da memória
-12:30 Técnicas comprovadas de estudo`,
-        tags: ["biologia", "neurociencia", "memoria", "aprendizado"],
-        disciplinaId: "biologia",
-      },
-      {
-        videoId: "6uXGz8F1xY4",
-        titulo: "O Sistema Imunológico: Como Seu Corpo Combate Ameaças",
-        canalNome: "Biologia Animada",
-        duracaoMin: 14,
-        duracaoIso: "PT14M",
-        miniaturaUrl: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=480&h=270&fit=crop",
-        descricao: `Anticorpos, células T e a fantástica defesa microscópica.
-0:00 Barreiras inatas do corpo
-03:20 Células apresentadoras de antígeno
-07:10 Células B e anticorpos
-11:00 Memória imunológica`,
-        tags: ["biologia", "imunologia", "saude", "medicina"],
-        disciplinaId: "biologia",
-      },
-      {
-        videoId: "kJQP7kiw5Fk",
-        titulo: "Genética e DNA: Do Código Genético à Síntese de Proteínas",
-        canalNome: "Biologia Moderna",
-        duracaoMin: 20,
-        duracaoIso: "PT20M",
         miniaturaUrl: "https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=480&h=270&fit=crop",
-        descricao: `Replicação do DNA, transcrição em RNA e tradução pelos ribossomos.
-0:00 A estrutura em dupla hélice de Watson e Crick
-04:40 Replicação semiconservativa
-10:10 Transcrição do RNA mensageiro
-15:30 Código genético universal e tradução`,
-        tags: ["biologia", "genetica", "dna", "celulas"],
+        descricao: `Como a tecnologia CRISPR-Cas9 permite editar o código genético com precisão cirúrgica.
+0:00 O que é o DNA e o código da vida
+04:10 Como bactérias inventaram o sistema CRISPR
+08:30 Aplicações no combate a doenças genéticas
+13:00 Dilemas éticos da edição genética`,
+        tags: ["biologia", "genetica", "dna", "crispr"],
         disciplinaId: "biologia",
       },
       {
-        videoId: "1L0T7Fm5n1Q",
-        titulo: "Ecologia e Cadeias Alimentares: Ciclos Biogeoquímicos e Biomas",
-        canalNome: "Planeta Biológico",
-        duracaoMin: 18,
-        duracaoIso: "PT18M",
-        miniaturaUrl: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=480&h=270&fit=crop",
-        descricao: `Produtores, consumidores, ciclo do carbono e fluxo de energia.
-0:00 Níveis de organização em ecologia
-04:20 Cadeias e Teias Alimentares
-09:10 Pirâmides ecológicas de energia
-14:00 Ciclo da água e do carbono`,
-        tags: ["biologia", "ecologia", "biomas", "cadeia alimentar"],
+        videoId: "1AElONvi9WQ",
+        titulo: "Por Que Baleias Azuis Não Têm Câncer: O Paradoxo de Peto",
+        canalNome: "Kurzgesagt – In a Nutshell",
+        duracaoMin: 12,
+        duracaoIso: "PT12M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=480&h=270&fit=crop",
+        descricao: `Divisão celular, mutações genéticas e mecanismos biológicos de proteção do organismo.
+0:00 A matemática da probabilidade de mutação celular
+03:30 O Paradoxo de Peto em grandes animais
+07:15 Genes supressores de tumor (p53)
+10:00 O que a medicina humana pode aprender`,
+        tags: ["biologia", "celulas", "fisiologia", "genetica"],
         disciplinaId: "biologia",
       },
     ],
@@ -488,68 +481,93 @@ export const CATALOGO_DISCIPLINAS: Disciplina[] = [
     id: "historia",
     nome: "História",
     icone: "🏛️",
-    descricao: "História do Brasil, civilizações antigas, revoluções e mundo contemporâneo.",
+    descricao: "Revoluções modernas, guerras mundiais, Iluminismo e História do Brasil.",
     corGradiente: "from-orange-600 to-amber-800",
-    palavrasChave: ["historia", "história", "brasil", "revolucao", "revolução", "idade media", "guerra", "imperio", "democracia"],
+    palavrasChave: [
+      "historia",
+      "história",
+      "brasil",
+      "revolucao",
+      "revolução",
+      "guerra",
+      "imperio",
+      "democracia",
+      "iluminismo",
+    ],
     videos: [
       {
-        videoId: "kJQP7kiw5Fk",
-        titulo: "A Revolução Científica e o Surgimento do Método Moderno",
-        canalNome: "História do Conhecimento",
-        duracaoMin: 15,
-        duracaoIso: "PT15M",
+        videoId: "lTTvKwCylFY",
+        titulo: "A Revolução Francesa: O Colapso do Antigo Regime",
+        canalNome: "CrashCourse",
+        duracaoMin: 12,
+        duracaoIso: "PT12M",
         miniaturaUrl: "https://images.unsplash.com/photo-1461360370896-922624d12aa1?w=480&h=270&fit=crop",
-        descricao: `De Galileu a Newton: como a humanidade aprendeu a questionar a natureza.
-0:00 O mundo antes do método científico
-03:30 Galileu e a luneta telescópica
-07:45 O método empírico de Bacon e Descartes
-11:30 Impacto no Iluminismo e sociedade`,
+        descricao: `A Queda da Bastilha, a Declaração dos Direitos do Homem e as raízes da modernidade democrática.
+0:00 Os Três Estados e a crise francesa
+03:15 A Tomada da Bastilha em 1789
+07:00 A fase radical do Terror e Robespierre
+10:30 O legado para os direitos humanos`,
+        tags: ["historia", "revolucao francesa", "europa", "iluminismo"],
+        disciplinaId: "historia",
+      },
+      {
+        videoId: "vzo8vnxSARg",
+        titulo: "A Revolução Científica: Galileu, Newton e o Método Empírico",
+        canalNome: "CrashCourse",
+        duracaoMin: 13,
+        duracaoIso: "PT13M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1461360370896-922624d12aa1?w=480&h=270&fit=crop",
+        descricao: `Como a humanidade deixou o dogma para trás e adotou o método empírico de observação.
+0:00 O cosmos geocêntrico e Aristóteles
+03:40 Copérnico e as órbitas heliocêntricas
+07:20 O telescópio de Galileu e o julgamento
+11:00 Newton e as leis universais da física`,
         tags: ["historia", "ciencia", "revolucao", "iluminismo"],
         disciplinaId: "historia",
       },
       {
-        videoId: "1L0T7Fm5n1Q",
-        titulo: "A Guerra Fria e a Corrida Espacial em Perspectiva",
-        canalNome: "Documentários Históricos",
-        duracaoMin: 17,
-        duracaoIso: "PT17M",
+        videoId: "dHSQAEam2yc",
+        titulo: "Primeira Guerra Mundial Explicada: As Alianças e a Tragédia",
+        canalNome: "OverSimplified",
+        duracaoMin: 16,
+        duracaoIso: "PT16M",
         miniaturaUrl: "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?w=480&h=270&fit=crop",
-        descricao: `As décadas de tensão geopolítica entre EUA e União Soviética.
-0:00 Pós-Segunda Guerra e divisão de Berlim
-04:20 O Sputnik e a corrida lunar
-09:10 Crise dos mísseis em Cuba
-13:40 Queda do Muro e legado`,
+        descricao: `O assassinato de Francisco Ferdinando, o jogo de alianças e a guerra de trincheiras.
+0:00 O barril de pólvora dos Balcãs
+04:20 O atentado em Sarajevo
+08:15 O plano Schlieffen e a frente ocidental
+13:00 Guerra de trincheiras e novas tecnologias bélicas`,
+        tags: ["historia", "primeira guerra", "europa", "seculo xx"],
+        disciplinaId: "historia",
+      },
+      {
+        videoId: "y9HjvHZfCUI",
+        titulo: "A Guerra Fria: EUA vs União Soviética e a Corrida Espacial",
+        canalNome: "CrashCourse",
+        duracaoMin: 13,
+        duracaoIso: "PT13M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?w=480&h=270&fit=crop",
+        descricao: `O confronto ideológico bipolar, a crise dos mísseis em Cuba e o pouso na Lua.
+0:00 A divisão pós-Segunda Guerra Mundial
+03:50 Doutrina Truman e o Plano Marshall
+07:30 A Crise dos Mísseis e corrida armamentista
+11:00 Queda do Muro de Berlim em 1989`,
         tags: ["historia", "guerra fria", "espaco", "geopolitica"],
         disciplinaId: "historia",
       },
       {
-        videoId: "WfGMYdalClU",
-        titulo: "História do Brasil Império: Da Independência à Proclamação da República",
-        canalNome: "História do Brasil",
-        duracaoMin: 22,
-        duracaoIso: "PT22M",
+        videoId: "BzADvI7MAKg",
+        titulo: "Independência do Brasil e o Primeiro Reinado",
+        canalNome: "Nerdologia",
+        duracaoMin: 11,
+        duracaoIso: "PT11M",
         miniaturaUrl: "https://images.unsplash.com/photo-1461360370896-922624d12aa1?w=480&h=270&fit=crop",
-        descricao: `Primeiro Reinado, Período Regencial, Segundo Reinado e abolição.
-0:00 A vinda da Família Real em 1808
-05:15 O 7 de Setembro e D. Pedro I
-11:40 O longo reinado de Dom Pedro II
-17:50 A abolição e o golpe republicano de 1889`,
-        tags: ["historia", "brasil", "imperio", "republica"],
-        disciplinaId: "historia",
-      },
-      {
-        videoId: "6uXGz8F1xY4",
-        titulo: "A Revolução Francesa: Queda da Bastilha, Iluminismo e Cidadania",
-        canalNome: "História em Foco",
-        duracaoMin: 16,
-        duracaoIso: "PT16M",
-        miniaturaUrl: "https://images.unsplash.com/photo-1461360370896-922624d12aa1?w=480&h=270&fit=crop",
-        descricao: `Liberdade, Igualdade e Fraternidade: o marco da Idade Contemporânea.
-0:00 O Antigo Regime e os Três Estados
-04:10 Tomada da Bastilha e Declaração dos Direitos
-09:20 Fase do Terror Jacobino e Robespierre
-13:30 A ascensão de Napoleão Bonaparte`,
-        tags: ["historia", "revolucao francesa", "europa", "iluminismo"],
+        descricao: `A vinda da família real em 1808, o Dia do Fico e o 7 de Setembro de 1822.
+0:00 O Bloqueio Continental e a fuga de D. João VI
+03:10 Abertura dos Portos e elevação a Reino Unido
+06:40 D. Pedro I e o processo de separação de Portugal
+09:20 A primeira Constituição do Brasil de 1824`,
+        tags: ["historia", "brasil", "independencia", "imperio"],
         disciplinaId: "historia",
       },
     ],
@@ -560,84 +578,62 @@ export const CATALOGO_DISCIPLINAS: Disciplina[] = [
     id: "ingles",
     nome: "Inglês",
     icone: "🇬🇧",
-    descricao: "Conversação, vocabulário essencial, pronúncia e gramática contextual.",
+    descricao: "Conversação prática, phrasal verbs, pronúncia e pensar em inglês.",
     corGradiente: "from-blue-600 to-indigo-800",
-    palavrasChave: ["ingles", "inglês", "english", "idiomas", "grammar", "conversacao", "vocabu", "listening"],
+    palavrasChave: [
+      "ingles",
+      "inglês",
+      "english",
+      "idiomas",
+      "grammar",
+      "conversacao",
+      "phrasal",
+      "listening",
+    ],
     videos: [
       {
-        videoId: "Vd9Z7g2B-3g",
-        titulo: "Learn English in 20 Minutes: Essential Grammar & Phrases",
+        videoId: "Q7HBdzgvmIs",
+        titulo: "BBC English Class: Como Aprender e Usar Phrasal Verbs",
         canalNome: "BBC Learning English",
-        duracaoMin: 21,
-        duracaoIso: "PT21M",
-        miniaturaUrl: "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=480&h=270&fit=crop",
-        descricao: `A complete guide to boost your English conversation and vocabulary.
-0:00 Introduction & Greetings
-03:10 Daily Routine & Present Tense
-07:45 Expressing Opinions in English
-12:30 Common Mistakes to Avoid
-16:15 Real Conversation Practice`,
-        tags: ["ingles", "inglês", "english", "grammar", "conversacao"],
+        duracaoMin: 10,
+        duracaoIso: "PT10M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=480&h=270&fit=crop",
+        descricao: `Dicas rápidas e práticas de especialistas da BBC para dominar os verbos frasais mais comuns.
+0:00 O que torna um phrasal verb especial
+02:30 Verbos com 'get', 'take' e 'put'
+05:40 Como deduzir pelo contexto
+08:15 Exercícios práticos e fixação`,
+        tags: ["ingles", "inglês", "phrasal verbs", "english", "grammar"],
         disciplinaId: "ingles",
       },
       {
-        videoId: "jU3vWqN1uR8",
-        titulo: "Como Pensar em Inglês e Falar sem Traduzir Mentalmente",
+        videoId: "FBmjH6nh5-k",
+        titulo: "6 Minute Grammar: Phrasal Verbs Tipos 1, 2, 3 e 4",
+        canalNome: "BBC Learning English",
+        duracaoMin: 6,
+        duracaoIso: "PT6M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=480&h=270&fit=crop",
+        descricao: `Aprenda a diferença entre phrasal verbs separáveis e inseparáveis na fala cotidiana.
+0:00 Tipos de phrasal verbs
+01:45 Verbos transitivos vs intransitivos
+03:30 Onde colocar o pronome (turn it on)
+05:00 Quiz rápido da BBC`,
+        tags: ["ingles", "inglês", "grammar", "phrasal verbs"],
+        disciplinaId: "ingles",
+      },
+      {
+        videoId: "OkbAsTGz6lo",
+        titulo: "Como Pensar em Inglês e Parar de Traduzir Mentalmente",
         canalNome: "English with Lucy",
         duracaoMin: 15,
         duracaoIso: "PT15M",
         miniaturaUrl: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=480&h=270&fit=crop",
-        descricao: `Técnicas práticas para destravar o pensamento em inglês no dia a dia.
-0:00 O erro da tradução mental
-03:30 Associando objetos diretamente aos conceitos
-07:15 Criando monólogos internos em inglês
-11:45 Rotina de 15 minutos diários`,
+        descricao: `5 técnicas comprovadas para destravar a fluência e criar monólogos internos em inglês.
+0:00 O vício de traduzir palavra por palavra
+03:30 Narrando seu dia a dia em inglês
+07:15 Aprendendo expressões em blocos (chunks)
+11:45 Rotina de 15 minutos diários de imersão`,
         tags: ["ingles", "inglês", "fluencia", "conversacao"],
-        disciplinaId: "ingles",
-      },
-      {
-        videoId: "d6yV3i_4j1g",
-        titulo: "10 Phrasal Verbs Essenciais para Conversação Diária",
-        canalNome: "BBC Learning English",
-        duracaoMin: 11,
-        duracaoIso: "PT11M",
-        miniaturaUrl: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=480&h=270&fit=crop",
-        descricao: `Os phrasal verbs mais usados no inglês contemporâneo.
-0:00 O que são phrasal verbs
-02:10 Phrasal verbs do dia a dia
-05:40 Phrasal verbs para estudos e trabalho
-08:20 Exemplos práticos`,
-        tags: ["ingles", "inglês", "phrasal verbs", "english"],
-        disciplinaId: "ingles",
-      },
-      {
-        videoId: "1L0T7Fm5n1Q",
-        titulo: "English at Work: Business Conversations & Vocabulary",
-        canalNome: "BBC Learning English",
-        duracaoMin: 16,
-        duracaoIso: "PT16M",
-        miniaturaUrl: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=480&h=270&fit=crop",
-        descricao: `Improve your professional English for meetings and emails.
-0:00 Introduction to Business English
-02:40 How to Start a Meeting Politely
-06:15 Asking for Clarification
-11:00 Closing Deals and Next Steps`,
-        tags: ["ingles", "inglês", "business", "trabalho", "english"],
-        disciplinaId: "ingles",
-      },
-      {
-        videoId: "u0vO61J3_uA",
-        titulo: "50 Palavras em Inglês Mais Usadas com Pronúncia Perfeita",
-        canalNome: "English with Lucy",
-        duracaoMin: 14,
-        duracaoIso: "PT14M",
-        miniaturaUrl: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=480&h=270&fit=crop",
-        descricao: `Guia de pronúncia e fonética dos termos mais recorrentes.
-0:00 Introdução aos fonemas
-03:15 Pronúncia de vogais curtas vs longas
-07:30 Consoantes silenciosas comuns
-11:00 Exercício prático de repetição`,
-        tags: ["ingles", "inglês", "pronuncia", "fonetica"],
         disciplinaId: "ingles",
       },
     ],
@@ -648,53 +644,63 @@ export const CATALOGO_DISCIPLINAS: Disciplina[] = [
     id: "filosofia",
     nome: "Filosofia & Sociologia",
     icone: "💭",
-    descricao: "Ética, epistemologia, iluminismo, cidadania e pensamento crítico.",
+    descricao: "Mito da caverna, ética de Aristóteles, teorias sociais de Marx, Weber e Durkheim.",
     corGradiente: "from-violet-600 to-purple-800",
-    palavrasChave: ["filosofia", "sociologia", "etica", "ética", "pensamento", "politica", "iluminismo", "sociedade", "moral"],
+    palavrasChave: [
+      "filosofia",
+      "sociologia",
+      "etica",
+      "ética",
+      "pensamento",
+      "politica",
+      "platao",
+      "aristoteles",
+      "sociedade",
+    ],
     videos: [
       {
-        videoId: "dcXqhqiZ2y4",
-        titulo: "O Mito da Caverna de Platão e a Ilusão do Mundo Sensível",
-        canalNome: "Filosofia Viva",
-        duracaoMin: 15,
-        duracaoIso: "PT15M",
+        videoId: "IV-8YsyghbU",
+        titulo: "O Mito da Caverna de Platão e a Ilusão da Realidade",
+        canalNome: "CrashCourse",
+        duracaoMin: 10,
+        duracaoIso: "PT10M",
         miniaturaUrl: "https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=480&h=270&fit=crop",
-        descricao: `A alegoria de Platão sobre ignorância, verdade e o papel da educação.
-0:00 O cenário da caverna e as sombras
-04:10 A libertação do prisioneiro e a dor da luz
-09:20 O retorno à caverna e incompreensão
-12:45 Aplicação no mundo das redes sociais e algoritmos`,
-        tags: ["filosofia", "platao", "etica", "conhecimento"],
+        descricao: `A alegoria de Platão sobre ignorância, o mundo das sombras e o mundo das ideias.
+0:00 Os prisioneiros acorrentados na caverna
+03:00 As sombras projetadas pelo fogo
+06:15 A fuga para o mundo exterior e a luz do Sol
+08:30 Conexão com o conhecimento e a verdade`,
+        tags: ["filosofia", "platao", "caverna", "conhecimento"],
         disciplinaId: "filosofia",
       },
       {
-        videoId: "bMknfKXIFA8",
-        titulo: "Ética a Nicômaco de Aristóteles: O Meio-Termo e a Felicidade",
-        canalNome: "Pensamento Crítico",
-        duracaoMin: 18,
-        duracaoIso: "PT18M",
+        videoId: "PrvtOWEXDIQ",
+        titulo: "Ética a Nicômaco de Aristóteles: A Virtude e a Felicidade",
+        canalNome: "CrashCourse",
+        duracaoMin: 10,
+        duracaoIso: "PT10M",
         miniaturaUrl: "https://images.unsplash.com/photo-1461360370896-922624d12aa1?w=480&h=270&fit=crop",
-        descricao: `Eudaimonia (felicidade plena) e a virtude como equilíbrio entre extremos.
-0:00 O que é virtude moral
-04:30 A doutrina do justo meio
-09:50 Coragem como equilíbrio entre covardia e temeridade
-14:15 A prática diária da virtude`,
+        descricao: `Eudaimonia (felicidade plena) e a virtude como equilíbrio perfeito entre dois extremos.
+0:00 O que é a virtude moral
+03:10 A doutrina do justo meio de Aristóteles
+06:20 A coragem entre a covardia e a imprudência
+08:45 A formação de hábitos virtuosos`,
         tags: ["filosofia", "aristoteles", "etica", "moral"],
         disciplinaId: "filosofia",
       },
       {
-        videoId: "7Tf_X_N8ZlA",
-        titulo: "Os Clássicos da Sociologia: Marx, Durkheim e Max Weber",
-        canalNome: "Sociologia em Ação",
-        duracaoMin: 22,
-        duracaoIso: "PT22M",
+        videoId: "DbTt_ySTjaY",
+        titulo: "Os Três Grandes Paradigmas Sociológicos: Marx, Weber e Durkheim",
+        canalNome: "CrashCourse",
+        duracaoMin: 10,
+        duracaoIso: "PT10M",
         miniaturaUrl: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=480&h=270&fit=crop",
-        descricao: `Fato social, luta de classes e ação social: os três pilares sociológicos.
-0:00 O surgimento da sociologia na modernidade
-05:10 Émile Durkheim e o Fato Social
-11:30 Karl Marx e o Materialismo Histórico
-17:00 Max Weber e a Ação Social Compreensiva`,
-        tags: ["sociologia", "weber", "marx", "durkheim", "sociedade"],
+        descricao: `Funcionalismo de Durkheim, conflito de classes de Marx e ação social de Weber.
+0:00 Por que estudar a sociedade de forma científica
+03:00 Émile Durkheim e os fatos sociais
+05:40 Karl Marx e o conflito entre classes
+08:10 Max Weber e o significado da ação humana`,
+        tags: ["sociologia", "weber", "marx", "durkheim"],
         disciplinaId: "filosofia",
       },
     ],
@@ -705,68 +711,124 @@ export const CATALOGO_DISCIPLINAS: Disciplina[] = [
     id: "tecnologia",
     nome: "Programação & Tech",
     icone: "💻",
-    descricao: "Desenvolvimento web, React, TypeScript, algoritmos e computação moderna.",
+    descricao: "Algoritmos, estruturas de dados, React, TypeScript e engenharia de software.",
     corGradiente: "from-slate-800 to-indigo-900",
-    palavrasChave: ["programacao", "programação", "react", "nextjs", "javascript", "typescript", "codigo", "dev", "software", "tecnologia"],
+    palavrasChave: [
+      "programacao",
+      "programação",
+      "react",
+      "algoritmos",
+      "javascript",
+      "typescript",
+      "codigo",
+      "dev",
+      "software",
+      "tecnologia",
+    ],
     videos: [
       {
-        videoId: "bMknfKXIFA8",
+        videoId: "8mei6uVttho",
+        titulo: "Introdução a Algoritmos e Lógica de Programação",
+        canalNome: "Curso em Vídeo",
+        duracaoMin: 28,
+        duracaoIso: "PT28M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1516116211227-bbc03e33f674?w=480&h=270&fit=crop",
+        descricao: `O que são algoritmos, variáveis, operadores lógicos e estruturas de controle com Gustavo Guanabara.
+0:00 O que é um algoritmo na prática
+05:30 Como o computador processa instruções
+12:10 Algoritmos no cotidiano: da receita ao código
+20:40 Primeiros passos no raciocínio computacional`,
+        tags: ["algoritmos", "logica", "programacao", "guanabara"],
+        disciplinaId: "tecnologia",
+      },
+      {
+        videoId: "kPRA0W1kECg",
+        titulo: "15 Algoritmos de Ordenação e Análise de Complexidade",
+        canalNome: "Timo Bingmann",
+        duracaoMin: 12,
+        duracaoIso: "PT12M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=480&h=270&fit=crop",
+        descricao: `Visualização sonora e gráfica de algoritmos de ordenação: Quicksort, Mergesort e complexidade Big-O.
+0:00 O que é complexidade de tempo Big-O
+02:15 Bubble Sort vs Selection Sort
+05:30 Quicksort e divisão e conquista
+09:10 Mergesort e performance em escala`,
+        tags: ["algoritmos", "ordenacao", "big-o", "estruturas de dados"],
+        disciplinaId: "tecnologia",
+      },
+      {
+        videoId: "Tn6-PIqc4UM",
         titulo: "React in 100 Seconds: Conceitos Fundamentais e Hooks",
         canalNome: "Fireship",
-        duracaoMin: 11,
-        duracaoIso: "PT11M",
+        duracaoMin: 5,
+        duracaoIso: "PT5M",
         miniaturaUrl: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=480&h=270&fit=crop",
-        descricao: `Tudo o que você precisa saber sobre o React e renderização declarativa.
+        descricao: `Tudo o que você precisa saber sobre o React, JSX, Virtual DOM e useState.
 0:00 O que é o React e JSX
 01:10 Virtual DOM e Reatividade
-02:20 Componentes e State
-03:00 Ecossistema Moderno`,
+02:20 Componentes e State com Hooks
+03:30 Ecossistema Moderno do React`,
         tags: ["react", "javascript", "programacao", "dev"],
         disciplinaId: "tecnologia",
       },
       {
-        videoId: "dcXqhqiZ2y4",
-        titulo: "Next.js App Router e Server Components Explicados",
+        videoId: "zQnBQ4tB3ZA",
+        titulo: "TypeScript in 100 Seconds: Tipagem e Produtividade",
         canalNome: "Fireship",
-        duracaoMin: 13,
-        duracaoIso: "PT13M",
+        duracaoMin: 5,
+        duracaoIso: "PT5M",
         miniaturaUrl: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=480&h=270&fit=crop",
-        descricao: `Guia prático sobre SSR, SSG e App Router.
-0:00 O que mudou no Next.js
-02:00 Server Components vs Client
-05:15 Roteamento Dinâmico e Cache
-08:30 Deploy e Otimização`,
-        tags: ["nextjs", "react", "programacao", "web"],
+        descricao: `Como o TypeScript adiciona tipos estáticos ao JavaScript para evitar bugs em produção.
+0:00 Por que o TypeScript foi criado
+01:15 Interfaces, Types e Genéricos
+02:30 Compilação e checagem em tempo real
+03:45 Configuração do tsconfig.json`,
+        tags: ["typescript", "javascript", "programacao", "dev"],
         disciplinaId: "tecnologia",
       },
       {
-        videoId: "7Tf_X_N8ZlA",
-        titulo: "Web Performance: Core Web Vitals e LCP na Prática",
-        canalNome: "Google Developers",
-        duracaoMin: 18,
-        duracaoIso: "PT18M",
+        videoId: "DHjqpvDnNGE",
+        titulo: "JavaScript in 100 Seconds: O Motor da Web Moderna",
+        canalNome: "Fireship",
+        duracaoMin: 5,
+        duracaoIso: "PT5M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=480&h=270&fit=crop",
+        descricao: `A história, o Event Loop e as capacidades modernas do JavaScript no navegador e Node.js.
+0:00 A criação relâmpago por Brendan Eich
+01:10 V8 Engine e o Event Loop assíncrono
+02:20 ES6+ e a evolução da sintaxe
+03:30 JavaScript no backend com Node e Bun`,
+        tags: ["javascript", "web", "programacao", "dev"],
+        disciplinaId: "tecnologia",
+      },
+      {
+        videoId: "bMknfKXIFA8",
+        titulo: "Curso Prático de React: Do Zero a Aplicações Reais",
+        canalNome: "freeCodeCamp.org",
+        duracaoMin: 35,
+        duracaoIso: "PT35M",
+        miniaturaUrl: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=480&h=270&fit=crop",
+        descricao: `Aprenda React construindo interfaces declarativas com componentes reutilizáveis e props.
+0:00 Configuração inicial e Create-React-App
+08:20 Compondo componentes e props
+18:40 Manipulando eventos e estado local
+28:10 Renderização condicional e listas`,
+        tags: ["react", "frontend", "programacao", "web"],
+        disciplinaId: "tecnologia",
+      },
+      {
+        videoId: "cuEtnrL9-H0",
+        titulo: "Aprenda Fetch API e Async/Await em Poucos Minutos",
+        canalNome: "Web Dev Simplified",
+        duracaoMin: 8,
+        duracaoIso: "PT8M",
         miniaturaUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=480&h=270&fit=crop",
-        descricao: `Aprenda como auditar o Largest Contentful Paint no Chrome DevTools.
-0:00 Introdução às Métricas
-03:20 Largest Contentful Paint (LCP)
-09:45 Interaction to Next Paint (INP)
-14:10 Profiling no DevTools`,
-        tags: ["web", "performance", "programacao", "google"],
-        disciplinaId: "tecnologia",
-      },
-      {
-        videoId: "kJQP7kiw5Fk",
-        titulo: "Algoritmos e Estruturas de Dados: Mochila 0/1 e Complexidade Big-O",
-        canalNome: "Computação com Intenção",
-        duracaoMin: 20,
-        duracaoIso: "PT20M",
-        miniaturaUrl: "https://images.unsplash.com/photo-1516116211227-bbc03e33f674?w=480&h=270&fit=crop",
-        descricao: `Como resolver o Problema da Mochila com Programação Dinâmica e análise Big-O.
-0:00 O que é a notação Big-O
-05:10 O Problema da Mochila 0/1
-11:20 Construindo a tabela de programação dinâmica
-16:40 Reconstrução da solução e testes`,
-        tags: ["algoritmos", "mochila", "programacao", "big-o"],
+        descricao: `Como fazer requisições HTTP GET e POST na web usando promises e async/await moderno.
+0:00 Introdução ao fetch nativo
+02:15 Lidando com respostas JSON
+04:30 Tratamento de erros com try/catch
+06:45 Enviando dados via POST`,
+        tags: ["javascript", "fetch", "web", "api"],
         disciplinaId: "tecnologia",
       },
     ],

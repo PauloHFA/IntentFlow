@@ -26,7 +26,23 @@ describe("Catálogo de Disciplinas e Playlists Dinâmicas", () => {
   it("retorna vídeos de Geografia ao pesquisar por 'geografia' ou 'placas tectônicas'", () => {
     const resultado = buscarVideosCatalogo("geografia");
     expect(resultado.length).toBeGreaterThan(0);
-    expect(resultado[0].titulo.toLowerCase()).toContain("geografia");
+    expect(resultado[0].disciplinaId).toBe("geografia");
+    expect(resultado[0].tags).toContain("geografia");
+  });
+
+  it("garante que NENHUM vídeo no catálogo contém o ID do Despacito (kJQP7kiw5Fk)", () => {
+    const todosVideos = CATALOGO_DISCIPLINAS.flatMap((d) => d.videos);
+    for (const v of todosVideos) {
+      expect(v.videoId).not.toBe("kJQP7kiw5Fk");
+    }
+  });
+
+  it("retorna Introdução a Algoritmos (Gustavo Guanabara) e Fireship para Programação & Tech", () => {
+    const videosTech = buscarVideosCatalogo("programação", "tecnologia");
+    expect(videosTech.length).toBeGreaterThan(0);
+    const ids = videosTech.map((v) => v.videoId);
+    expect(ids).toContain("8mei6uVttho"); // Curso em Vídeo - Algoritmos
+    expect(ids).toContain("Tn6-PIqc4UM"); // Fireship - React in 100s
   });
 
   it("garante isolamento estrito: nenhum vídeo de outra disciplina vaza na busca por Geografia", () => {
@@ -63,10 +79,10 @@ describe("Catálogo de Disciplinas e Playlists Dinâmicas", () => {
     }
   });
 
-  it("retorna vídeos de Física ao pesquisar por 'leis de newton'", () => {
-    const resultado = buscarVideosCatalogo("newton física");
+  it("retorna vídeos de Física ao pesquisar por 'gravidade física'", () => {
+    const resultado = buscarVideosCatalogo("gravidade física");
     expect(resultado.length).toBeGreaterThan(0);
-    expect(resultado[0].titulo.toLowerCase()).toContain("newton");
+    expect(resultado[0].disciplinaId).toBe("fisica");
   });
 
   it("retorna vídeos de Inglês ao pesquisar por 'conversação em inglês'", () => {
