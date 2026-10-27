@@ -45,3 +45,4 @@ O IntentFlow tem como proposta central substituir o consumo passivo de vídeos (
 - Aumento drástico na velocidade de anotação durante os vídeos.
 - Redução de distrações visuais com o Modo Zen.
 - Maior rigor pedagógico ao transformar notas em pares Pergunta/Resposta para repetição espaçada.
+

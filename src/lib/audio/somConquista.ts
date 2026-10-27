@@ -41,3 +41,4 @@ export function tocarSomVitoria(): void {
     console.debug("Web Audio API indisponível ou bloqueada:", err);
   }
 }
+
